@@ -1,17 +1,45 @@
-import React from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/card';
+import React, { useState } from 'react';
+import PageHeader from '../components/ui/page-header';
+import NavigationBar from '../components/ui/navigation-bar';
+import SidebarMenu from '../components/ui/sidebar-menu';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { Progress } from '../components/ui/progress';
 import StatCard from '../components/ui/stat-card';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../components/ui/table';
+import DataTable from '../components/ui/data-table';
 import SkillsRadar from '../components/hr/skills-radar';
-import {
+import SkillsHeatmap from '../components/hr/skills-heatmap';
+import { BusinessEntityCard } from '../components/ui/business-entity';
+import EmployeeProfileCard from '../components/hr/employee-profile-card';
+import ActionButton, { ActionButtonWithBadge } from '../components/ui/action-button';
+import CardAction, { CardActionGroup, QuickAction } from '../components/ui/card-action';
+import { 
+  House,
+  ChartBar,
   Users,
-  TrendUp,
+  UsersThree,
+  UserCircle,
+  Gear,
+  Bell,
+  Calendar,
+  FolderOpen,
+  ChatCircle,
+  SignOut,
   GraduationCap,
   Target,
-  Calendar,
+  BriefcaseMetal,
+  Chair,
+  FileText,
+  Lightning,
+  TrendUp,
+  Plus,
+  Download,
+  Eye,
+  Medal,
+  Buildings,
+  ClockCounterClockwise,
   Clock,
   ArrowRight,
   Warning,
@@ -19,6 +47,196 @@ import {
 } from '@phosphor-icons/react';
 
 const DashboardPage = () => {
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+
+  // Configuration du menu latéral
+  const sidebarConfig = {
+    header: {
+      logo: "HR",
+      title: "HR Platform",
+      subtitle: "Design System"
+    },
+    groups: [
+      {
+        title: "Navigation principale",
+        items: [
+          {
+            icon: House,
+            label: "Tableau de bord",
+            href: "/dashboard",
+            isActive: true
+          },
+          {
+            icon: UsersThree,
+            label: "Employés",
+            href: "/employees",
+            badge: { label: "124", className: "bg-blue-100 text-blue-800" }
+          },
+          {
+            icon: BriefcaseMetal,
+            label: "Postes",
+            href: "/jobs",
+            badge: { label: "8", className: "bg-purple-100 text-purple-800" }
+          },
+          {
+            icon: GraduationCap,
+            label: "Formations",
+            href: "/training",
+            badge: { label: "3", className: "bg-yellow-100 text-yellow-800" }
+          }
+        ]
+      },
+      {
+        title: "Gestion",
+        items: [
+          {
+            icon: FileText,
+            label: "Contrats",
+            href: "/contracts",
+            children: [
+              { label: "CDI", href: "/contracts/cdi" },
+              { label: "CDD", href: "/contracts/cdd" },
+              { label: "Freelance", href: "/contracts/freelance" }
+            ]
+          },
+          {
+            icon: Medal,
+            label: "Compétences",
+            href: "/skills"
+          },
+          {
+            icon: ChartBar,
+            label: "Analyses",
+            href: "/analytics"
+          }
+        ]
+      },
+      {
+        title: "Administration",
+        items: [
+          {
+            icon: Buildings,
+            label: "Entreprise",
+            href: "/company"
+          },
+          {
+            icon: Gear,
+            label: "Paramètres",
+            href: "/settings"
+          }
+        ]
+      }
+    ]
+  };
+
+  // Configuration de la barre de navigation
+  const navigationConfig = {
+    items: [
+      {
+        icon: House,
+        label: "Accueil",
+        href: "/",
+        isActive: false
+      },
+      {
+        icon: ChartBar,
+        label: "Dashboard",
+        href: "/dashboard",
+        isActive: true
+      },
+      {
+        icon: FolderOpen,
+        label: "Projets",
+        href: "/projects"
+      }
+    ],
+    actions: [
+      {
+        icon: Bell,
+        badge: true,
+        tooltip: "Notifications",
+        onClick: () => console.log('Notifications clicked')
+      },
+      {
+        icon: ChatCircle,
+        tooltip: "Messages",
+        onClick: () => console.log('Messages clicked')
+      }
+    ],
+    user: {
+      name: "Marie Dubois",
+      email: "marie.dubois@company.com",
+      initials: "MD"
+    },
+    userMenuItems: [
+      {
+        icon: UserCircle,
+        label: "Mon profil",
+        onClick: () => console.log('Profile clicked')
+      },
+      {
+        icon: Gear,
+        label: "Paramètres",
+        onClick: () => console.log('Settings clicked')
+      },
+      {
+        icon: SignOut,
+        label: "Se déconnecter",
+        variant: "danger",
+        onClick: () => console.log('Logout clicked')
+      }
+    ]
+  };
+
+  // Données d'exemple
+  const sampleEmployee = {
+    name: "Alexandre Martin",
+    role: "Lead Developer",
+    department: "Développement",
+    email: "alexandre.martin@company.com",
+    phone: "+33 6 12 34 56 78",
+    location: "Lyon, France",
+    joinDate: "Mars 2022",
+    skills: ["React", "Node.js", "TypeScript", "Leadership"],
+    performance: 94,
+    status: "active"
+  };
+
+  const stats = [
+    {
+      title: "Employés actifs",
+      value: "124",
+      change: "+12%",
+      changeType: "positive",
+      icon: UsersThree,
+      iconColor: "blue"
+    },
+    {
+      title: "Formations en cours",
+      value: "18",
+      change: "+25%",
+      changeType: "positive",
+      icon: GraduationCap,
+      iconColor: "yellow"
+    },
+    {
+      title: "Objectifs atteints",
+      value: "89%",
+      change: "+5%",
+      changeType: "positive",
+      icon: Target,
+      iconColor: "green"
+    },
+    {
+      title: "Satisfaction équipe",
+      value: "4.6/5",
+      change: "+0.2",
+      changeType: "positive",
+      icon: Medal,
+      iconColor: "purple"
+    }
+  ];
+
   const upcomingEvents = [
     { id: 1, title: 'Entretien annuel - Marie Dupont', time: '09:00', type: 'meeting' },
     { id: 2, title: 'Formation Leadership - Session 3', time: '14:00', type: 'training' },
@@ -39,187 +257,549 @@ const DashboardPage = () => {
   ];
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Tableau de bord RH</h1>
-          <p className="text-gray-500 mt-1">Bienvenue, Marie Dupont</p>
-        </div>
-        <div className="flex gap-3">
-          <Button variant="outline" className="gap-2">
-            <Calendar size={16} />
-            Aujourd'hui
-          </Button>
-          <Button className="gap-2">
-            <TrendUp size={16} />
-            Générer rapport
-          </Button>
-        </div>
+    <div className="min-h-screen bg-gray-50 flex">
+      {/* Sidebar Menu - Sticky Full Height */}
+      <div className="w-80 bg-white border-r border-gray-200 sticky top-0 h-screen overflow-y-auto flex-shrink-0">
+        <SidebarMenu {...sidebarConfig} className="h-full border-none shadow-none rounded-none" width="100%" height="100%" />
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard
-          title="Total Employés"
-          value="1,234"
-          description="vs mois dernier"
-          trend="up"
-          trendValue="+12%"
-          icon={Users}
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col">
+        {/* Page Header */}
+        <PageHeader
+          icon={ChartBar}
+          iconColor="blue"
+          title="Tableau de bord RH"
+          subtitle="Vue d'ensemble de la performance et des activités de votre équipe"
+          statusBadge={{
+            label: "Mise à jour en temps réel",
+            className: "bg-green-50 text-green-700 border-green-200"
+          }}
+          badges={[
+            { label: "Q4 2024", className: "bg-blue-50 text-blue-700 border-blue-200" },
+            { label: "124 employés", className: "bg-purple-50 text-purple-700 border-purple-200" }
+          ]}
+          actions={[
+            {
+              label: "Exporter",
+              icon: Download,
+              variant: "outline",
+              onClick: () => console.log('Export clicked')
+            },
+            {
+              label: "Générer rapport",
+              icon: FileText,
+              onClick: () => console.log('Report clicked')
+            }
+          ]}
         />
-        <StatCard
-          title="Formations actives"
-          value="42"
-          description="en cours ce mois"
-          trend="up"
-          trendValue="+5"
-          icon={GraduationCap}
-          variant="primary"
-        />
-        <StatCard
-          title="Taux de rétention"
-          value="94.2%"
-          description="sur 12 mois"
-          trend="up"
-          trendValue="+2.1%"
-          icon={Target}
-          variant="secondary"
-        />
-        <StatCard
-          title="Score engagement"
-          value="8.7/10"
-          description="dernière enquête"
-          trend="up"
-          trendValue="+0.5"
-          icon={TrendUp}
-          variant="success"
-        />
-      </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Today's Agenda */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center justify-between">
-              <span>Agenda du jour</span>
-              <Badge variant="outline">{upcomingEvents.length} événements</Badge>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {upcomingEvents.map(event => (
-                <div key={event.id} className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
-                  <div className="flex flex-col items-center">
-                    <Clock size={18} className="text-gray-400" />
-                    <span className="text-xs text-gray-500 mt-1">{event.time}</span>
-                  </div>
+        {/* Content Container */}
+        <div className="flex-1 p-8">
+          {/* Main Content */}
+          <div className="space-y-8">
+            {/* Actions recommandées en premier */}
+            <Card className="w-full border-l-4 border-l-primary-500 bg-primary-50/30">
+              <CardHeader>
+                <div className="flex items-start justify-between">
                   <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-900">{event.title}</p>
-                    <Badge variant="outline" className="mt-1 text-xs">
-                      {event.type === 'meeting' && 'Réunion'}
-                      {event.type === 'training' && 'Formation'}
-                      {event.type === 'review' && 'Revue'}
-                    </Badge>
-                  </div>
-                  <ArrowRight size={16} className="text-gray-400 mt-1" />
-                </div>
-              ))}
-            </div>
-            <Button variant="link" className="w-full mt-4 text-primary-600">
-              Voir le calendrier complet →
-            </Button>
-          </CardContent>
-        </Card>
-
-        {/* Recent Activities */}
-        <Card className="lg:col-span-2">
-          <CardHeader>
-            <CardTitle>Activités récentes</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {recentActivities.map(activity => (
-                <div key={activity.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                  <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                    {activity.status === 'completed' && <CheckCircle size={20} className="text-success-600" weight="fill" />}
-                    {activity.status === 'pending' && <Clock size={20} className="text-warning-600" weight="fill" />}
-                    {activity.status === 'success' && <Target size={20} className="text-primary-600" weight="fill" />}
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm">
-                      <span className="font-medium text-gray-900">{activity.user}</span>
-                      <span className="text-gray-600"> {activity.action} </span>
-                      <span className="font-medium text-gray-900">{activity.target}</span>
-                    </p>
-                    <p className="text-xs text-gray-500 mt-1">{activity.time}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Team Performance */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Performance par équipe</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {teamPerformance.map(team => (
-                <div key={team.name} className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-2">
-                      <span className="font-medium text-gray-900">{team.name}</span>
-                      <Badge variant="outline" className="text-xs">{team.members} membres</Badge>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                        <Lightning size={14} className="text-primary-600" weight="duotone" />
+                      </div>
+                      <CardTitle className="text-lg font-semibold text-gray-900">
+                        Actions recommandées
+                      </CardTitle>
                     </div>
-                    <span className="text-sm font-medium text-gray-600">{team.performance}%</span>
+                    <CardDescription className="text-gray-600">
+                      Opportunités d'amélioration pour optimiser votre performance et celle de votre équipe
+                    </CardDescription>
                   </div>
-                  <Progress 
-                    value={team.performance} 
-                    variant={team.performance >= 90 ? 'success' : team.performance >= 80 ? 'warning' : 'default'}
-                  />
+                  <div className="flex items-center gap-2 ml-4">
+                    <Button variant="outline" size="sm">
+                      <Calendar size={16} className="mr-2" />
+                      Planifier
+                    </Button>
+                    <Button size="sm" className="bg-primary-600 hover:bg-primary-700 text-white">
+                      <Lightning size={16} className="mr-2" />
+                      Agir maintenant
+                    </Button>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+              </CardHeader>
+              <CardContent>
+                <CardActionGroup>
+                  <CardAction
+                    icon={GraduationCap}
+                    title="Formation recommandée : Leadership avancé"
+                    description="Développez vos compétences en management pour accompagner votre équipe vers l'excellence."
+                    badge="Nouveau"
+                    badgeVariant="success"
+                    priority="high"
+                    actionLabel="S'inscrire"
+                    onAction={() => console.log('Formation clicked')}
+                  />
+                  
+                  <CardAction
+                    icon={Target}
+                    title="Définir vos objectifs Q1 2025"
+                    description="Planifiez vos objectifs du prochain trimestre en alignement avec la stratégie d'entreprise."
+                    badge="Échéance : 15 déc"
+                    badgeVariant="warning"
+                    priority="normal"
+                    actionLabel="Commencer"
+                    onAction={() => console.log('Objectifs clicked')}
+                  />
+                </CardActionGroup>
+              </CardContent>
+            </Card>
 
-        {/* Skills Overview */}
-        <SkillsRadar showTarget={false} />
-      </div>
+            {/* DataTable - Liste employés */}
+            <Card className="w-full">
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <CardTitle className="text-lg font-semibold text-gray-900">
+                      Liste des employés
+                    </CardTitle>
+                    <CardDescription className="mt-2 text-gray-600">
+                      Gestion et suivi de tous les collaborateurs de l'entreprise
+                    </CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2 ml-4">
+                    <Button variant="outline" size="sm">
+                      <UsersThree size={16} className="mr-2" />
+                      Filtrer
+                    </Button>
+                    <Button size="sm">
+                      <Plus size={16} className="mr-2" />
+                      Ajouter
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <DataTable
+                  data={[
+                    {
+                      id: 1,
+                      name: "Marie Dupont",
+                      role: "RH Manager",
+                      department: "Ressources Humaines",
+                      email: "marie.dupont@company.com",
+                      status: "Actif",
+                      joinDate: "2020-01-15",
+                      performance: 92
+                    },
+                    {
+                      id: 2,
+                      name: "Alexandre Martin",
+                      role: "Lead Developer",
+                      department: "Développement",
+                      email: "alexandre.martin@company.com",
+                      status: "Actif",
+                      joinDate: "2022-03-10",
+                      performance: 94
+                    },
+                    {
+                      id: 3,
+                      name: "Sarah Chen",
+                      role: "UX Designer",
+                      department: "Design",
+                      email: "sarah.chen@company.com",
+                      status: "Actif",
+                      joinDate: "2023-06-01",
+                      performance: 88
+                    },
+                    {
+                      id: 4,
+                      name: "Pierre Durand",
+                      role: "Marketing Manager",
+                      department: "Marketing",
+                      email: "pierre.durand@company.com",
+                      status: "En congé",
+                      joinDate: "2021-09-20",
+                      performance: 85
+                    },
+                    {
+                      id: 5,
+                      name: "Lisa Wang",
+                      role: "Data Analyst",
+                      department: "Données",
+                      email: "lisa.wang@company.com",
+                      status: "Actif",
+                      joinDate: "2023-02-14",
+                      performance: 91
+                    }
+                  ]}
+                  columns={[
+                    {
+                      key: 'name',
+                      label: 'Nom',
+                      sortable: true,
+                      render: (value, row) => (
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                            <span className="text-blue-600 text-xs font-medium">{value.charAt(0)}</span>
+                          </div>
+                          <div>
+                            <p className="font-medium text-gray-900">{value}</p>
+                            <p className="text-sm text-gray-500">{row.role}</p>
+                          </div>
+                        </div>
+                      )
+                    },
+                    {
+                      key: 'department',
+                      label: 'Département',
+                      sortable: true
+                    },
+                    {
+                      key: 'email',
+                      label: 'Email',
+                      sortable: true
+                    },
+                    {
+                      key: 'status',
+                      label: 'Statut',
+                      render: (value) => (
+                        <Badge 
+                          variant="outline" 
+                          className={
+                            value === 'Actif' ? 'bg-green-50 text-green-700 border-green-200' :
+                            value === 'En congé' ? 'bg-orange-50 text-orange-700 border-orange-200' :
+                            'bg-gray-50 text-gray-700 border-gray-200'
+                          }
+                        >
+                          {value}
+                        </Badge>
+                      )
+                    },
+                    {
+                      key: 'joinDate',
+                      label: 'Date d\'embauche',
+                      sortable: true,
+                      render: (value) => new Date(value).toLocaleDateString('fr-FR')
+                    },
+                    {
+                      key: 'performance',
+                      label: 'Performance',
+                      sortable: true,
+                      render: (value) => (
+                        <div className="flex items-center gap-2">
+                          <span className="font-medium text-gray-900">{value}%</span>
+                          <div className="w-16 h-2 bg-gray-200 rounded-full">
+                            <div 
+                              className={`h-2 rounded-full ${
+                                value >= 90 ? 'bg-green-500' :
+                                value >= 80 ? 'bg-yellow-500' :
+                                'bg-red-500'
+                              }`}
+                              style={{ width: `${value}%` }}
+                            />
+                          </div>
+                        </div>
+                      )
+                    }
+                  ]}
+                  searchable={true}
+                  sortable={true}
+                  paginated={true}
+                  pageSize={5}
+                />
+              </CardContent>
+            </Card>
 
-      {/* Alerts Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Warning size={20} className="text-warning-600" />
-            Actions requises
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-4 bg-warning-50 rounded-lg border border-warning-200">
-              <p className="font-medium text-warning-900">5 évaluations en attente</p>
-              <p className="text-sm text-warning-700 mt-1">À compléter avant fin de semaine</p>
-              <Button size="sm" variant="outline" className="mt-3">Voir les évaluations</Button>
-            </div>
-            <div className="p-4 bg-primary-50 rounded-lg border border-primary-200">
-              <p className="font-medium text-primary-900">12 demandes de congés</p>
-              <p className="text-sm text-primary-700 mt-1">En attente de validation</p>
-              <Button size="sm" variant="outline" className="mt-3">Traiter les demandes</Button>
-            </div>
-            <div className="p-4 bg-secondary-50 rounded-lg border border-secondary-200">
-              <p className="font-medium text-secondary-900">3 postes ouverts</p>
-              <p className="text-sm text-secondary-700 mt-1">28 candidatures reçues</p>
-              <Button size="sm" variant="outline" className="mt-3">Voir les candidatures</Button>
-            </div>
+            {/* Stats Section */}
+            <Card className="w-full">
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <CardTitle className="text-lg font-semibold text-gray-900">
+                      Métriques clés
+                    </CardTitle>
+                    <CardDescription className="mt-2 text-gray-600">
+                      Indicateurs de performance et statistiques importantes
+                    </CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2 ml-4">
+                    <Button variant="outline" size="sm">
+                      <Eye size={16} className="mr-2" />
+                      Voir détails
+                    </Button>
+                    <Button size="sm">
+                      <Download size={16} className="mr-2" />
+                      Exporter
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {stats.map((stat, index) => (
+                    <StatCard key={index} {...stat} />
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Actions rapides */}
+            <Card className="w-full">
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <CardTitle className="text-lg font-semibold text-gray-900">
+                      Actions rapides
+                    </CardTitle>
+                    <CardDescription className="mt-2 text-gray-600">
+                      Accès direct aux fonctionnalités les plus utilisées
+                    </CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2 ml-4">
+                    <Button variant="outline" size="sm">
+                      <Plus size={16} className="mr-2" />
+                      Personnaliser
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <Card className=" border-l-4 border-l-blue-500">
+                    <CardHeader className="pb-4">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-10 h-10 bg-blue-50 border border-blue-200 rounded-lg flex items-center justify-center">
+                          <UsersThree size={20} className="text-blue-600" weight="duotone" />
+                        </div>
+                        <CardTitle className="text-lg">Gestion d'équipe</CardTitle>
+                      </div>
+                      <CardDescription>
+                        Gérer les employés, les équipes et l'organisation
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex flex-wrap gap-2">
+                        <ActionButton variant="primary" size="sm" icon={Plus}>
+                          Nouvel employé
+                        </ActionButton>
+                        <ActionButtonWithBadge 
+                          variant="outline" 
+                          size="sm" 
+                          icon={FileText}
+                          badge="3"
+                          badgeVariant="warning"
+                        >
+                          Contrats
+                        </ActionButtonWithBadge>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className=" border-l-4 border-l-yellow-500">
+                    <CardHeader className="pb-4">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-10 h-10 bg-yellow-50 border border-yellow-200 rounded-lg flex items-center justify-center">
+                          <GraduationCap size={20} className="text-yellow-600" weight="duotone" />
+                        </div>
+                        <CardTitle className="text-lg">Formation</CardTitle>
+                      </div>
+                      <CardDescription>
+                        Programmes de formation et développement des compétences
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex flex-wrap gap-2">
+                        <ActionButton variant="warning" size="sm" icon={Calendar}>
+                          Planifier
+                        </ActionButton>
+                        <ActionButton variant="outline" size="sm" icon={Eye}>
+                          Voir tout
+                        </ActionButton>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className=" border-l-4 border-l-green-500">
+                    <CardHeader className="pb-4">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-10 h-10 bg-green-50 border border-green-200 rounded-lg flex items-center justify-center">
+                          <ChartBar size={20} className="text-green-600" weight="duotone" />
+                        </div>
+                        <CardTitle className="text-lg">Performance</CardTitle>
+                      </div>
+                      <CardDescription>
+                        Suivi des objectifs et évaluation des performances
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex flex-wrap gap-2">
+                        <ActionButton variant="success" size="sm" icon={Target}>
+                          Objectifs
+                        </ActionButton>
+                        <ActionButton variant="outline" size="sm" icon={TrendUp}>
+                          Analyses
+                        </ActionButton>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </CardContent>
+            </Card>
+
+
+            {/* Business Entities */}
+            <Card className="w-full">
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <CardTitle className="text-lg font-semibold text-gray-900">
+                      Entités métier RH
+                    </CardTitle>
+                    <CardDescription className="mt-2 text-gray-600">
+                      Représentation visuelle des différentes entités RH avec leurs couleurs dédiées
+                    </CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2 ml-4">
+                    <Button variant="outline" size="sm">
+                      <Buildings size={16} className="mr-2" />
+                      Configuration
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                  <BusinessEntityCard entity="employee" icon={UsersThree} />
+                  <BusinessEntityCard entity="job" icon={BriefcaseMetal} />
+                  <BusinessEntityCard entity="position" icon={Chair} />
+                  <BusinessEntityCard entity="training" icon={GraduationCap} />
+                  <BusinessEntityCard entity="skill" icon={Medal} />
+                  <BusinessEntityCard entity="team" icon={Users} />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Activité récente */}
+            <Card className="w-full">
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <CardTitle className="text-lg font-semibold text-gray-900">
+                      Activité récente
+                    </CardTitle>
+                    <CardDescription className="mt-2 text-gray-600">
+                      Dernières actions et événements dans la plateforme
+                    </CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2 ml-4">
+                    <Button variant="outline" size="sm">
+                      <ClockCounterClockwise size={16} className="mr-2" />
+                      Historique
+                    </Button>
+                    <Button size="sm">
+                      <Eye size={16} className="mr-2" />
+                      Voir tout
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {[
+                    {
+                      icon: UsersThree,
+                      color: "blue",
+                      action: "Nouvel employé ajouté",
+                      details: "Sarah Chen a rejoint l'équipe Développement",
+                      time: "Il y a 2 heures"
+                    },
+                    {
+                      icon: GraduationCap,
+                      color: "yellow",
+                      action: "Formation terminée",
+                      details: "Module 'Leadership avancé' complété par 8 employés",
+                      time: "Il y a 4 heures"
+                    },
+                    {
+                      icon: Target,
+                      color: "green",
+                      action: "Objectif atteint",
+                      details: "Équipe Marketing a dépassé l'objectif Q4 de 12%",
+                      time: "Il y a 1 jour"
+                    },
+                    {
+                      icon: FileText,
+                      color: "indigo",
+                      action: "Contrat renouvelé",
+                      details: "3 contrats CDD convertis en CDI",
+                      time: "Il y a 2 jours"
+                    }
+                  ].map((activity, index) => (
+                    <div key={index} className="flex items-start gap-4 p-4 rounded-lg border border-gray-100 hover:border-gray-200 transition-colors">
+                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                        activity.color === 'blue' ? 'bg-blue-50 border border-blue-200' :
+                        activity.color === 'yellow' ? 'bg-yellow-50 border border-yellow-200' :
+                        activity.color === 'green' ? 'bg-green-50 border border-green-200' :
+                        'bg-indigo-50 border border-indigo-200'
+                      }`}>
+                        <activity.icon size={18} className={`${
+                          activity.color === 'blue' ? 'text-blue-600' :
+                          activity.color === 'yellow' ? 'text-yellow-600' :
+                          activity.color === 'green' ? 'text-green-600' :
+                          'text-indigo-600'
+                        }`} weight="duotone" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-medium text-gray-900 mb-1">
+                          {activity.action}
+                        </h4>
+                        <p className="text-sm text-gray-600 mb-1">
+                          {activity.details}
+                        </p>
+                        <div className="flex items-center gap-2">
+                          <ClockCounterClockwise size={14} className="text-gray-400" />
+                          <span className="text-xs text-gray-500">{activity.time}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+
+            {/* Skills Overview */}
+            <Card className="w-full">
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <CardTitle className="text-lg font-semibold text-gray-900">
+                      Vue d'ensemble des compétences
+                    </CardTitle>
+                    <CardDescription className="mt-2 text-gray-600">
+                      Radar des compétences de l'équipe avec indicateurs de performance
+                    </CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2 ml-4">
+                    <Button variant="outline" size="sm">
+                      <Medal size={16} className="mr-2" />
+                      Gestion compétences
+                    </Button>
+                    <Button size="sm">
+                      <Download size={16} className="mr-2" />
+                      Exporter
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <SkillsHeatmap className="w-full" showHeader={false} />
+              </CardContent>
+            </Card>
+
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 };

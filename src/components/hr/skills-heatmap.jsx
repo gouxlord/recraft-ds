@@ -6,7 +6,8 @@ import { Warning, Crown, CheckCircle, CircleDashed } from '@phosphor-icons/react
 
 const SkillsHeatmap = ({ 
   skills = [],
-  className 
+  className,
+  showHeader = true
 }) => {
   const defaultSkills = skills.length > 0 ? skills : [
     { skillName: 'Gestion de projet', isKey: true, currentLevel: 2.7, targetLevel: 4, status: -1.3 },
@@ -75,14 +76,16 @@ const SkillsHeatmap = ({
       className
     )}>
       {/* Header */}
-      <div className="mb-6">
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">
-          Vue d'ensemble des compétences
-        </h3>
-        <p className="text-sm text-gray-600">
-          Synthèse de toutes les compétences requises pour ce métier (missions et compétences directes confondues)
-        </p>
-      </div>
+      {showHeader && (
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">
+            Vue d'ensemble des compétences
+          </h3>
+          <p className="text-sm text-gray-600">
+            Synthèse de toutes les compétences requises pour ce métier (missions et compétences directes confondues)
+          </p>
+        </div>
+      )}
 
       {/* Table */}
       <Table>
