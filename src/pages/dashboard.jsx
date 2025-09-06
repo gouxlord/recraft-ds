@@ -301,31 +301,17 @@ const DashboardPage = () => {
             {/* Actions recommandées en premier */}
             <Card className="w-full border-l-4 border-l-primary-500 bg-primary-50/30">
               <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
-                        <Lightning size={14} className="text-primary-600" weight="duotone" />
-                      </div>
-                      <CardTitle className="text-lg font-semibold text-gray-900">
-                        Actions recommandées
-                      </CardTitle>
-                    </div>
-                    <CardDescription className="text-gray-600">
-                      Opportunités d'amélioration pour optimiser votre performance et celle de votre équipe
-                    </CardDescription>
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <Lightning size={14} className="text-primary-600" weight="duotone" />
                   </div>
-                  <div className="flex items-center gap-2 ml-4">
-                    <Button variant="outline" size="sm">
-                      <Calendar size={16} className="mr-2" />
-                      Planifier
-                    </Button>
-                    <Button size="sm" className="bg-primary-600 hover:bg-primary-700 text-white">
-                      <Lightning size={16} className="mr-2" />
-                      Agir maintenant
-                    </Button>
-                  </div>
+                  <CardTitle className="text-lg font-semibold text-gray-900">
+                    Actions recommandées
+                  </CardTitle>
                 </div>
+                <CardDescription className="text-gray-600">
+                  Opportunités d'amélioration pour optimiser votre performance et celle de votre équipe
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <CardActionGroup>
@@ -357,26 +343,12 @@ const DashboardPage = () => {
             {/* DataTable - Liste employés */}
             <Card className="w-full">
               <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <CardTitle className="text-lg font-semibold text-gray-900">
-                      Liste des employés
-                    </CardTitle>
-                    <CardDescription className="mt-2 text-gray-600">
-                      Gestion et suivi de tous les collaborateurs de l'entreprise
-                    </CardDescription>
-                  </div>
-                  <div className="flex items-center gap-2 ml-4">
-                    <Button variant="outline" size="sm">
-                      <UsersThree size={16} className="mr-2" />
-                      Filtrer
-                    </Button>
-                    <Button size="sm">
-                      <Plus size={16} className="mr-2" />
-                      Ajouter
-                    </Button>
-                  </div>
-                </div>
+                <CardTitle className="text-lg font-semibold text-gray-900">
+                  Liste des employés
+                </CardTitle>
+                <CardDescription className="mt-2 text-gray-600">
+                  Gestion et suivi de tous les collaborateurs de l'entreprise
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <DataTable
@@ -513,26 +485,12 @@ const DashboardPage = () => {
             {/* Stats Section */}
             <Card className="w-full">
               <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <CardTitle className="text-lg font-semibold text-gray-900">
-                      Métriques clés
-                    </CardTitle>
-                    <CardDescription className="mt-2 text-gray-600">
-                      Indicateurs de performance et statistiques importantes
-                    </CardDescription>
-                  </div>
-                  <div className="flex items-center gap-2 ml-4">
-                    <Button variant="outline" size="sm">
-                      <Eye size={16} className="mr-2" />
-                      Voir détails
-                    </Button>
-                    <Button size="sm">
-                      <Download size={16} className="mr-2" />
-                      Exporter
-                    </Button>
-                  </div>
-                </div>
+                <CardTitle className="text-lg font-semibold text-gray-900">
+                  Métriques clés
+                </CardTitle>
+                <CardDescription className="mt-2 text-gray-600">
+                  Indicateurs de performance et statistiques importantes
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -546,22 +504,12 @@ const DashboardPage = () => {
             {/* Actions rapides */}
             <Card className="w-full">
               <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <CardTitle className="text-lg font-semibold text-gray-900">
-                      Actions rapides
-                    </CardTitle>
-                    <CardDescription className="mt-2 text-gray-600">
-                      Accès direct aux fonctionnalités les plus utilisées
-                    </CardDescription>
-                  </div>
-                  <div className="flex items-center gap-2 ml-4">
-                    <Button variant="outline" size="sm">
-                      <Plus size={16} className="mr-2" />
-                      Personnaliser
-                    </Button>
-                  </div>
-                </div>
+                <CardTitle className="text-lg font-semibold text-gray-900">
+                  Actions rapides
+                </CardTitle>
+                <CardDescription className="mt-2 text-gray-600">
+                  Accès direct aux fonctionnalités les plus utilisées
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -650,22 +598,12 @@ const DashboardPage = () => {
             {/* Business Entities */}
             <Card className="w-full">
               <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <CardTitle className="text-lg font-semibold text-gray-900">
-                      Entités métier RH
-                    </CardTitle>
-                    <CardDescription className="mt-2 text-gray-600">
-                      Représentation visuelle des différentes entités RH avec leurs couleurs dédiées
-                    </CardDescription>
-                  </div>
-                  <div className="flex items-center gap-2 ml-4">
-                    <Button variant="outline" size="sm">
-                      <Buildings size={16} className="mr-2" />
-                      Configuration
-                    </Button>
-                  </div>
-                </div>
+                <CardTitle className="text-lg font-semibold text-gray-900">
+                  Entités métier RH
+                </CardTitle>
+                <CardDescription className="mt-2 text-gray-600">
+                  Représentation visuelle des différentes entités RH avec leurs couleurs dédiées
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
@@ -682,26 +620,12 @@ const DashboardPage = () => {
             {/* Activité récente */}
             <Card className="w-full">
               <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <CardTitle className="text-lg font-semibold text-gray-900">
-                      Activité récente
-                    </CardTitle>
-                    <CardDescription className="mt-2 text-gray-600">
-                      Dernières actions et événements dans la plateforme
-                    </CardDescription>
-                  </div>
-                  <div className="flex items-center gap-2 ml-4">
-                    <Button variant="outline" size="sm">
-                      <ClockCounterClockwise size={16} className="mr-2" />
-                      Historique
-                    </Button>
-                    <Button size="sm">
-                      <Eye size={16} className="mr-2" />
-                      Voir tout
-                    </Button>
-                  </div>
-                </div>
+                <CardTitle className="text-lg font-semibold text-gray-900">
+                  Activité récente
+                </CardTitle>
+                <CardDescription className="mt-2 text-gray-600">
+                  Dernières actions et événements dans la plateforme
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -771,26 +695,12 @@ const DashboardPage = () => {
             {/* Skills Overview */}
             <Card className="w-full">
               <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <CardTitle className="text-lg font-semibold text-gray-900">
-                      Vue d'ensemble des compétences
-                    </CardTitle>
-                    <CardDescription className="mt-2 text-gray-600">
-                      Radar des compétences de l'équipe avec indicateurs de performance
-                    </CardDescription>
-                  </div>
-                  <div className="flex items-center gap-2 ml-4">
-                    <Button variant="outline" size="sm">
-                      <Medal size={16} className="mr-2" />
-                      Gestion compétences
-                    </Button>
-                    <Button size="sm">
-                      <Download size={16} className="mr-2" />
-                      Exporter
-                    </Button>
-                  </div>
-                </div>
+                <CardTitle className="text-lg font-semibold text-gray-900">
+                  Vue d'ensemble des compétences
+                </CardTitle>
+                <CardDescription className="mt-2 text-gray-600">
+                  Radar des compétences de l'équipe avec indicateurs de performance
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <SkillsHeatmap className="w-full" showHeader={false} showCard={false} />

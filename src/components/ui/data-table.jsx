@@ -405,7 +405,7 @@ const DataTable = ({
       )}
 
       {/* Overlay pour fermer les dropdowns */}
-      {(showColumnSelector || showFilters) && (
+      {showColumnSelector && (
         <div
           className="fixed inset-0 z-0"
           onClick={() => {
