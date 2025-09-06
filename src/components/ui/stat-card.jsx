@@ -38,29 +38,51 @@ const StatCard = ({
 
   const variantStyles = {
     default: 'bg-white',
-    primary: 'bg-gradient-to-br from-primary-500 to-primary-700 text-white',
-    secondary: 'bg-gradient-to-br from-secondary-500 to-secondary-700 text-white',
-    success: 'bg-gradient-to-br from-success-500 to-success-700 text-white',
+    primary: 'bg-white',
+    secondary: 'bg-white', 
+    success: 'bg-white',
   };
+
+  const getVariantAccent = () => {
+    switch(variant) {
+      case 'primary':
+        return 'border-l-primary-500';
+      case 'secondary':
+        return 'border-l-secondary-500';
+      case 'success':
+        return 'border-l-success-500';
+      default:
+        return 'border-l-gray-300';
+    }
+  };
+
+  const getIconStyles = () => {
+    switch(variant) {
+      case 'primary':
+        return { bg: 'bg-primary-50', color: 'text-primary-600' };
+      case 'secondary':
+        return { bg: 'bg-secondary-50', color: 'text-secondary-600' };
+      case 'success':
+        return { bg: 'bg-success-50', color: 'text-success-600' };
+      default:
+        return { bg: 'bg-gray-50', color: 'text-gray-600' };
+    }
+  };
+
+  const iconStyles = getIconStyles();
 
   return (
     <div className={cn(
-      "rounded-xl p-6 shadow-soft border border-gray-200",
-      variantStyles[variant],
+      "rounded-xl p-6 shadow-soft border border-gray-200 border-l-4 hover:shadow-medium transition-shadow bg-white",
+      getVariantAccent(),
       className
     )}>
       <div className="flex items-start justify-between">
         <div className="flex-1">
-          <p className={cn(
-            "text-sm font-medium",
-            variant === 'default' ? 'text-gray-600' : 'text-white/80'
-          )}>
+          <p className="text-sm font-medium text-gray-600">
             {title}
           </p>
-          <p className={cn(
-            "text-3xl font-bold mt-2",
-            variant === 'default' ? 'text-gray-900' : 'text-white'
-          )}>
+          <p className="text-3xl font-bold mt-2 text-gray-900">
             {value}
           </p>
           {(description || trendValue) && (
@@ -76,10 +98,7 @@ const StatCard = ({
                 </div>
               )}
               {description && (
-                <p className={cn(
-                  "text-sm",
-                  variant === 'default' ? 'text-gray-500' : 'text-white/70'
-                )}>
+                <p className="text-sm text-gray-500">
                   {description}
                 </p>
               )}
@@ -88,14 +107,13 @@ const StatCard = ({
         </div>
         {Icon && (
           <div className={cn(
-            "p-3 rounded-lg",
-            variant === 'default' ? 'bg-primary-50' : 'bg-white/10'
+            "p-3 rounded-xl shadow-sm",
+            iconStyles.bg
           )}>
             <Icon 
               size={24} 
-              className={cn(
-                variant === 'default' ? 'text-primary-600' : 'text-white'
-              )}
+              className={iconStyles.color}
+              weight="duotone"
             />
           </div>
         )}

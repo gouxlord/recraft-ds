@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
 import { Badge } from '../ui/badge';
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../ui/table';
 import { Warning, Crown, CheckCircle, CircleDashed } from '@phosphor-icons/react';
 
 const SkillsHeatmap = ({ 
@@ -84,84 +85,77 @@ const SkillsHeatmap = ({
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto">
-        <table className="w-full">
-          {/* Header */}
-          <thead>
-            <tr className="border-b border-gray-200">
-              <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700 uppercase tracking-wide">
-                Compétence
-              </th>
-              <th className="text-center py-3 px-4 text-sm font-semibold text-gray-700 uppercase tracking-wide">
-                Niveau
-              </th>
-              <th className="text-center py-3 px-4 text-sm font-semibold text-gray-700 uppercase tracking-wide">
-                Cible
-              </th>
-              <th className="text-center py-3 px-4 text-sm font-semibold text-gray-700 uppercase tracking-wide">
-                Statut
-              </th>
-            </tr>
-          </thead>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="text-left text-sm font-semibold text-gray-700 uppercase tracking-wide">
+              Compétence
+            </TableHead>
+            <TableHead className="text-center text-sm font-semibold text-gray-700 uppercase tracking-wide">
+              Niveau
+            </TableHead>
+            <TableHead className="text-center text-sm font-semibold text-gray-700 uppercase tracking-wide">
+              Cible
+            </TableHead>
+            <TableHead className="text-center text-sm font-semibold text-gray-700 uppercase tracking-wide">
+              Statut
+            </TableHead>
+          </TableRow>
+        </TableHeader>
 
-          {/* Body */}
-          <tbody className="divide-y divide-gray-100">
-            {defaultSkills.map((skill, index) => {
-              const statusConfig = getStatusConfig(skill.status);
-              return (
-                <tr 
-                  key={index} 
-                  className="hover:bg-gray-50 transition-colors group"
-                >
-                  {/* Skill Name */}
-                  <td className="py-4 px-4">
-                    <div className="flex items-center gap-3">
-                      <span className="text-sm font-medium text-gray-900">
-                        {skill.skillName}
-                      </span>
-                      {skill.isKey && (
-                        <Badge 
-                          variant="outline" 
-                          className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded"
-                        >
-                          Clé
-                        </Badge>
-                      )}
-                    </div>
-                  </td>
-
-                  {/* Current Level */}
-                  <td className="py-4 px-4 text-center">
-                    <span className="text-lg font-semibold text-gray-900">
-                      {skill.currentLevel.toFixed(1)}
+        <TableBody>
+          {defaultSkills.map((skill, index) => {
+            const statusConfig = getStatusConfig(skill.status);
+            return (
+              <TableRow key={index}>
+                {/* Skill Name */}
+                <TableCell>
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm font-medium text-gray-900">
+                      {skill.skillName}
                     </span>
-                  </td>
+                    {skill.isKey && (
+                      <Badge 
+                        variant="outline" 
+                        className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded"
+                      >
+                        Clé
+                      </Badge>
+                    )}
+                  </div>
+                </TableCell>
 
-                  {/* Target */}
-                  <td className="py-4 px-4 text-center">
-                    <span className="text-lg font-medium text-gray-600">
-                      {skill.targetLevel}
-                    </span>
-                  </td>
+                {/* Current Level */}
+                <TableCell className="text-center">
+                  <span className="text-lg font-semibold text-gray-900">
+                    {skill.currentLevel.toFixed(1)}
+                  </span>
+                </TableCell>
 
-                  {/* Status */}
-                  <td className={cn(
-                    "py-4 px-4 text-center",
-                    statusConfig.bgColor,
-                    statusConfig.textColor,
-                    statusConfig.borderColor
-                  )}>
-                    <div className="flex items-center justify-center gap-2 font-semibold">
-                      <span className="text-lg">{formatStatus(skill.status)}</span>
-                      {statusConfig.icon}
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+                {/* Target */}
+                <TableCell className="text-center">
+                  <span className="text-lg font-medium text-gray-600">
+                    {skill.targetLevel}
+                  </span>
+                </TableCell>
+
+                {/* Status */}
+                <TableCell className={cn(
+                  "text-center",
+                  statusConfig.bgColor,
+                  statusConfig.textColor,
+                  statusConfig.borderColor
+                )}>
+                  <div className="flex items-center justify-center gap-2 font-semibold">
+                    <span className="text-lg">{formatStatus(skill.status)}</span>
+                    {statusConfig.icon}
+                  </div>
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
 
       {/* Legend */}
       <div className="mt-6 pt-4 border-t border-gray-200">

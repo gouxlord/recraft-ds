@@ -9,6 +9,7 @@ import { Checkbox } from '../components/ui/checkbox';
 import { Switch } from '../components/ui/switch';
 import StatCard from '../components/ui/stat-card';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../components/ui/table';
+import DataTable from '../components/ui/data-table';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/tabs';
 import { 
   Breadcrumb, 
@@ -23,7 +24,7 @@ import {
   ModalContent, 
   ModalFooter 
 } from '../components/ui/modal';
-import { Toast, useToast } from '../components/ui/toast';
+import { createToast, useToast } from '../components/ui/toast';
 import { RadioGroup, RadioOption } from '../components/ui/radio';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/ui/accordion';
 import { Skeleton, SkeletonCard, SkeletonTable, SkeletonProfile } from '../components/ui/skeleton';
@@ -31,6 +32,8 @@ import { LoadingSpinner, PageSpinner, SectionSpinner } from '../components/ui/sp
 import DatePicker from '../components/ui/date-picker';
 import FileUpload from '../components/ui/file-upload';
 import ActionCard, { TrainingCard, MentoringCard, ReadingCard } from '../components/ui/action-card';
+import ActionButton, { FloatingActionGroup, ActionButtonWithBadge, ActionButtonWithProgress } from '../components/ui/action-button';
+import CardAction, { CardActionGroup, QuickAction } from '../components/ui/card-action';
 import EmptyState, { 
   EmptyEmployees, 
   EmptyTraining, 
@@ -58,9 +61,16 @@ import {
   ChatCircle,
   SignOut,
   CaretDown,
+  CaretRight,
   Trash,
   PencilSimple,
-  Eye
+  Eye,
+  Buildings,
+  ClockCounterClockwise,
+  FileText,
+  BriefcaseMetal,
+  Chair,
+  Lightning
 } from '@phosphor-icons/react';
 
 const ShowcasePage = () => {
@@ -820,6 +830,213 @@ const ShowcasePage = () => {
           </Card>
         </section>
 
+        {/* DataTable Section */}
+        <section className="mb-12">
+          <h2 className="font-heading text-2xl font-semibold text-gray-900 mb-6">DataTable avancée</h2>
+          <Card>
+            <CardHeader>
+              <CardTitle>Table de données interactive</CardTitle>
+              <CardDescription>
+                Table avec recherche, filtres, tri, sélection, pagination et gestion des colonnes
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <DataTable
+                data={[
+                  { 
+                    id: 1, 
+                    name: 'Marie Dupont', 
+                    role: 'RH Manager', 
+                    department: 'Ressources Humaines',
+                    status: 'active',
+                    salary: '65000€',
+                    joinDate: '2020-01-15',
+                    location: 'Paris',
+                    experience: '8 ans'
+                  },
+                  { 
+                    id: 2, 
+                    name: 'Pierre Martin', 
+                    role: 'Développeur Senior', 
+                    department: 'IT',
+                    status: 'active',
+                    salary: '75000€',
+                    joinDate: '2019-03-22',
+                    location: 'Lyon',
+                    experience: '10 ans'
+                  },
+                  { 
+                    id: 3, 
+                    name: 'Sophie Bernard', 
+                    role: 'Designer UI/UX', 
+                    department: 'Design',
+                    status: 'leave',
+                    salary: '58000€',
+                    joinDate: '2021-06-10',
+                    location: 'Paris',
+                    experience: '5 ans'
+                  },
+                  { 
+                    id: 4, 
+                    name: 'Thomas Leroy', 
+                    role: 'Chef de Projet', 
+                    department: 'Gestion de Projet',
+                    status: 'active',
+                    salary: '68000€',
+                    joinDate: '2018-11-05',
+                    location: 'Toulouse',
+                    experience: '12 ans'
+                  },
+                  { 
+                    id: 5, 
+                    name: 'Julie Moreau', 
+                    role: 'Analyste Business', 
+                    department: 'Stratégie',
+                    status: 'active',
+                    salary: '62000€',
+                    joinDate: '2022-02-14',
+                    location: 'Paris',
+                    experience: '6 ans'
+                  },
+                  { 
+                    id: 6, 
+                    name: 'Laurent Petit', 
+                    role: 'Développeur Frontend', 
+                    department: 'IT',
+                    status: 'active',
+                    salary: '55000€',
+                    joinDate: '2023-01-20',
+                    location: 'Marseille',
+                    experience: '3 ans'
+                  },
+                  { 
+                    id: 7, 
+                    name: 'Camille Robert', 
+                    role: 'Responsable Marketing', 
+                    department: 'Marketing',
+                    status: 'leave',
+                    salary: '70000€',
+                    joinDate: '2020-08-12',
+                    location: 'Lyon',
+                    experience: '9 ans'
+                  },
+                  { 
+                    id: 8, 
+                    name: 'Nicolas Durand', 
+                    role: 'Comptable', 
+                    department: 'Finance',
+                    status: 'active',
+                    salary: '48000€',
+                    joinDate: '2021-04-03',
+                    location: 'Paris',
+                    experience: '4 ans'
+                  },
+                  { 
+                    id: 9, 
+                    name: 'Émilie Blanc', 
+                    role: 'Consultante', 
+                    department: 'Conseil',
+                    status: 'active',
+                    salary: '72000€',
+                    joinDate: '2019-09-30',
+                    location: 'Nice',
+                    experience: '11 ans'
+                  },
+                  { 
+                    id: 10, 
+                    name: 'Julien Fournier', 
+                    role: 'Ingénieur DevOps', 
+                    department: 'IT',
+                    status: 'active',
+                    salary: '78000€',
+                    joinDate: '2020-05-18',
+                    location: 'Bordeaux',
+                    experience: '7 ans'
+                  },
+                  { 
+                    id: 11, 
+                    name: 'Céline Garnier', 
+                    role: 'Juriste', 
+                    department: 'Juridique',
+                    status: 'leave',
+                    salary: '65000€',
+                    joinDate: '2022-07-25',
+                    location: 'Paris',
+                    experience: '8 ans'
+                  },
+                  { 
+                    id: 12, 
+                    name: 'Antoine Roux', 
+                    role: 'Data Analyst', 
+                    department: 'IT',
+                    status: 'active',
+                    salary: '60000€',
+                    joinDate: '2023-03-15',
+                    location: 'Lyon',
+                    experience: '2 ans'
+                  }
+                ]}
+                columns={[
+                  { 
+                    key: 'name', 
+                    label: 'Nom complet',
+                    render: (value, row) => (
+                      <div className="font-medium text-gray-900">{value}</div>
+                    )
+                  },
+                  { 
+                    key: 'role', 
+                    label: 'Poste'
+                  },
+                  { 
+                    key: 'department', 
+                    label: 'Département'
+                  },
+                  { 
+                    key: 'status', 
+                    label: 'Statut',
+                    render: (value) => (
+                      <Badge 
+                        variant={value === 'active' ? 'success' : 'warning'}
+                      >
+                        {value === 'active' ? 'Actif' : 'En congé'}
+                      </Badge>
+                    )
+                  },
+                  { 
+                    key: 'salary', 
+                    label: 'Salaire',
+                    align: 'right',
+                    render: (value) => (
+                      <span className="font-mono text-sm font-medium">{value}</span>
+                    )
+                  },
+                  { 
+                    key: 'location', 
+                    label: 'Localisation'
+                  },
+                  { 
+                    key: 'experience', 
+                    label: 'Expérience',
+                    align: 'center'
+                  },
+                  { 
+                    key: 'joinDate', 
+                    label: 'Date d\'embauche',
+                    render: (value) => new Date(value).toLocaleDateString('fr-FR')
+                  }
+                ]}
+                searchable={true}
+                filterable={true}
+                sortable={true}
+                selectable={true}
+                paginated={true}
+                pageSize={5}
+              />
+            </CardContent>
+          </Card>
+        </section>
+
         {/* Navigation Components */}
         <section>
           <h2 className="font-heading text-2xl font-semibold text-gray-900 mb-8">Navigation</h2>
@@ -881,14 +1098,35 @@ const ShowcasePage = () => {
                 <Button onClick={() => setIsModalOpen(true)}>
                   Ouvrir Modal
                 </Button>
-                <Button variant="outline" onClick={() => success('Succès !', 'Action réalisée avec succès')}>
+                <Button variant="outline" onClick={() => createToast.success('Succès !', 'Action réalisée avec succès')}>
                   Toast Succès
                 </Button>
-                <Button variant="outline" onClick={() => error('Erreur !', 'Une erreur est survenue')}>
+                <Button variant="outline" onClick={() => createToast.error('Erreur !', 'Une erreur est survenue')}>
                   Toast Erreur
                 </Button>
-                <Button variant="outline" onClick={() => warning('Attention !', 'Vérifiez vos données')}>
+                <Button variant="outline" onClick={() => createToast.warning('Attention !', 'Vérifiez vos données')}>
                   Toast Warning
+                </Button>
+                <Button variant="outline" onClick={() => createToast.info('Information', 'Voici une notification informative')}>
+                  Toast Info
+                </Button>
+                <Button variant="outline" onClick={() => {
+                  const promise = new Promise((resolve) => 
+                    setTimeout(() => resolve('Données sauvegardées !'), 2000)
+                  );
+                  createToast.promise(promise, {
+                    loading: 'Sauvegarde en cours...',
+                    success: 'Sauvegarde terminée !',
+                    error: 'Erreur lors de la sauvegarde'
+                  });
+                }}>
+                  Toast Promise
+                </Button>
+                <Button variant="outline" onClick={() => createToast.success('Action avec bouton', 'Cliquez sur "Voir plus" pour en savoir plus', {
+                  action: 'Voir plus',
+                  onAction: () => alert('Action exécutée !')
+                })}>
+                  Toast avec Action
                 </Button>
               </div>
             </CardContent>
@@ -943,43 +1181,135 @@ const ShowcasePage = () => {
         {/* Navigation Menus Section */}
         <section>
           <h2 className="font-heading text-2xl font-semibold text-gray-900 mb-8">Menus de navigation</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            
-            {/* Sidebar Menu */}
+          
+          {/* Sidebar Menu - Full Width Demo */}
+          <div className="mb-8">
             <Card className="hover-lift">
               <CardHeader>
-                <CardTitle>Menu latéral principal</CardTitle>
-                <CardDescription>Navigation principale de l'application</CardDescription>
+                <CardTitle>Menu latéral principal avec sous-menus</CardTitle>
+                <CardDescription>Navigation principale de l'application avec système hiérarchique</CardDescription>
               </CardHeader>
               <CardContent>
-                <nav className="space-y-1">
-                  <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-primary-700 bg-primary-50 rounded-lg transition-colors">
-                    <House size={18} weight="duotone" />
-                    Tableau de bord
-                  </a>
-                  <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
-                    <Users size={18} weight="duotone" />
-                    Employés
-                  </a>
-                  <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
-                    <ChartBar size={18} weight="duotone" />
-                    Analytics
-                  </a>
-                  <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
-                    <GraduationCap size={18} weight="duotone" />
-                    Formations
-                  </a>
-                  <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
-                    <Calendar size={18} weight="duotone" />
-                    Planning
-                  </a>
-                  <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
-                    <FolderOpen size={18} weight="duotone" />
-                    Documents
-                  </a>
-                </nav>
+                <div className="w-[270px] h-[500px] bg-white border border-gray-200 rounded-lg p-4 overflow-y-auto shadow-soft">
+                  <div className="mb-6">
+                    <div className="flex items-center gap-3 px-3 py-2 text-gray-900">
+                      <Buildings size={24} className="text-primary-600" weight="duotone" />
+                      <div>
+                        <h3 className="font-semibold text-sm">Mon Entreprise RH</h3>
+                        <p className="text-xs text-gray-500">Version 2.1.0</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <nav className="space-y-1">
+                    {/* Tableau de bord */}
+                    <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-white bg-primary-600 rounded-lg transition-colors">
+                      <House size={18} weight="duotone" />
+                      <span>Tableau de bord</span>
+                    </a>
+                    
+                    {/* Employés avec sous-menu */}
+                    <div className="space-y-1">
+                      <button className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                        <Users size={18} weight="duotone" />
+                        <span className="flex-1 text-left">Employés</span>
+                        <CaretDown size={14} className="transform transition-transform" />
+                      </button>
+                      <div className="ml-6 space-y-1 border-l-2 border-gray-200 pl-4">
+                        <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                          <UserCircle size={14} weight="duotone" />
+                          Liste des employés
+                        </a>
+                        <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                          <Plus size={14} weight="duotone" />
+                          Ajouter un employé
+                        </a>
+                        <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                          <Buildings size={14} weight="duotone" />
+                          Organigramme
+                        </a>
+                      </div>
+                    </div>
+                    
+                    {/* Analytics */}
+                    <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                      <ChartBar size={18} weight="duotone" />
+                      <span>Analytics</span>
+                    </a>
+                    
+                    {/* Formations avec sous-menu */}
+                    <div className="space-y-1">
+                      <button className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                        <GraduationCap size={18} weight="duotone" />
+                        <span className="flex-1 text-left">Formations</span>
+                        <CaretDown size={14} className="transform transition-transform" />
+                      </button>
+                      <div className="ml-6 space-y-1 border-l-2 border-gray-200 pl-4">
+                        <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                          <FolderOpen size={14} weight="duotone" />
+                          Catalogue
+                        </a>
+                        <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                          <Calendar size={14} weight="duotone" />
+                          Planification
+                        </a>
+                        <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                          <ClockCounterClockwise size={14} weight="duotone" />
+                          Historique
+                        </a>
+                      </div>
+                    </div>
+                    
+                    {/* Planning */}
+                    <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                      <Calendar size={18} weight="duotone" />
+                      <span>Planning</span>
+                    </a>
+                    
+                    {/* Documents avec sous-menu */}
+                    <div className="space-y-1">
+                      <button className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                        <FolderOpen size={18} weight="duotone" />
+                        <span className="flex-1 text-left">Documents</span>
+                        <CaretDown size={14} className="transform transition-transform" />
+                      </button>
+                      <div className="ml-6 space-y-1 border-l-2 border-gray-200 pl-4">
+                        <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                          <FileText size={14} weight="duotone" />
+                          Contrats
+                        </a>
+                        <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                          <FolderOpen size={14} weight="duotone" />
+                          Dossiers RH
+                        </a>
+                        <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                          <Download size={14} weight="duotone" />
+                          Templates
+                        </a>
+                      </div>
+                    </div>
+                    
+                    {/* Séparateur */}
+                    <div className="my-4 border-t border-gray-200"></div>
+                    
+                    {/* Paramètres */}
+                    <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                      <Gear size={18} weight="duotone" />
+                      <span>Paramètres</span>
+                    </a>
+                    
+                    {/* Support */}
+                    <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                      <ChatCircle size={18} weight="duotone" />
+                      <span>Support</span>
+                    </a>
+                  </nav>
+                </div>
               </CardContent>
             </Card>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
             {/* Top Navigation */}
             <Card className="hover-lift">
@@ -1027,15 +1357,15 @@ const ShowcasePage = () => {
               </CardHeader>
               <CardContent>
                 <div className="relative">
-                  <div className="w-48 bg-white border border-gray-200 rounded-lg shadow-large">
+                  <div className="w-56 bg-white border border-gray-200 rounded-lg shadow-large">
                     <div className="p-3 border-b border-gray-100">
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                        <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
                           <UserCircle size={18} className="text-primary-600" weight="duotone" />
                         </div>
-                        <div>
-                          <p className="text-sm font-medium text-gray-900">Marie Dupont</p>
-                          <p className="text-xs text-gray-500">marie.dupont@company.com</p>
+                        <div className="min-w-0 flex-1">
+                          <p className="text-sm font-medium text-gray-900 truncate">Marie Dupont</p>
+                          <p className="text-xs text-gray-500 truncate">marie.dupont@company.com</p>
                         </div>
                       </div>
                     </div>
@@ -1154,6 +1484,477 @@ const ShowcasePage = () => {
                     Formations
                   </span>
                 </nav>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Modern Action Buttons Section */}
+        <section>
+          <h2 className="font-heading text-2xl font-semibold text-gray-900 mb-8">Boutons d'actions modernes</h2>
+          <p className="text-gray-600 mb-8">Boutons avec effets visuels avancés pour attirer l'attention sur les actions importantes</p>
+          
+          <div className="space-y-8">
+            {/* Basic Action Buttons */}
+            <Card className="hover-lift">
+              <CardHeader>
+                <CardTitle>Boutons basiques avec effets</CardTitle>
+                <CardDescription>Gradients, ombres et animations hover</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-4">
+                  <ActionButton variant="primary" icon={Lightning}>
+                    Action principale
+                  </ActionButton>
+                  <ActionButton variant="secondary" icon={GraduationCap}>
+                    Formation
+                  </ActionButton>
+                  <ActionButton variant="success" icon={Target}>
+                    Valider
+                  </ActionButton>
+                  <ActionButton variant="warning" icon={Bell}>
+                    Attention
+                  </ActionButton>
+                  <ActionButton variant="info" icon={Eye}>
+                    Information
+                  </ActionButton>
+                  <ActionButton variant="outline" icon={Download}>
+                    Télécharger
+                  </ActionButton>
+                  <ActionButton variant="glass" icon={Gear} className="bg-gradient-to-r from-primary-100 to-secondary-100">
+                    Effet verre
+                  </ActionButton>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Advanced Action Buttons */}
+            <Card className="hover-lift">
+              <CardHeader>
+                <CardTitle>Boutons avancés</CardTitle>
+                <CardDescription>Avec badges, progress et états de chargement</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-6">
+                  {/* Boutons avec badges */}
+                  <div>
+                    <h4 className="font-medium text-gray-900 mb-3">Avec badges de notification</h4>
+                    <div className="flex flex-wrap gap-4">
+                      <ActionButtonWithBadge 
+                        variant="primary" 
+                        icon={Bell} 
+                        badge="12"
+                        badgeVariant="error"
+                      >
+                        Notifications
+                      </ActionButtonWithBadge>
+                      <ActionButtonWithBadge 
+                        variant="outline" 
+                        icon={Calendar} 
+                        badge="3"
+                        badgeVariant="warning"
+                      >
+                        Rendez-vous
+                      </ActionButtonWithBadge>
+                      <ActionButtonWithBadge 
+                        variant="success" 
+                        icon={Users} 
+                        badge="5"
+                        badgeVariant="success"
+                      >
+                        Nouvelles candidatures
+                      </ActionButtonWithBadge>
+                    </div>
+                  </div>
+
+                  {/* Boutons avec progress */}
+                  <div>
+                    <h4 className="font-medium text-gray-900 mb-3">Avec indicateur de progression</h4>
+                    <div className="flex flex-wrap gap-4">
+                      <ActionButtonWithProgress 
+                        variant="primary" 
+                        icon={GraduationCap}
+                        progress={75}
+                      >
+                        Formation en cours
+                      </ActionButtonWithProgress>
+                      <ActionButtonWithProgress 
+                        variant="success" 
+                        icon={Target}
+                        progress={90}
+                      >
+                        Objectifs 2024
+                      </ActionButtonWithProgress>
+                      <ActionButtonWithProgress 
+                        variant="info" 
+                        icon={FileText}
+                        progress={45}
+                      >
+                        Évaluations
+                      </ActionButtonWithProgress>
+                    </div>
+                  </div>
+
+                  {/* États de chargement */}
+                  <div>
+                    <h4 className="font-medium text-gray-900 mb-3">États de chargement</h4>
+                    <div className="flex flex-wrap gap-4">
+                      <ActionButton variant="primary" loading>
+                        Chargement
+                      </ActionButton>
+                      <ActionButton variant="secondary" icon={Upload}>
+                        Upload terminé
+                      </ActionButton>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Floating Action Groups */}
+            <Card className="hover-lift">
+              <CardHeader>
+                <CardTitle>Groupes d'actions flottantes</CardTitle>
+                <CardDescription>Conteneurs stylés pour grouper les boutons d'actions</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-6">
+                  <FloatingActionGroup>
+                    <ActionButton variant="primary" icon={Plus} size="sm">
+                      Créer
+                    </ActionButton>
+                    <ActionButton variant="outline" icon={PencilSimple} size="sm">
+                      Modifier
+                    </ActionButton>
+                    <ActionButton variant="outline" icon={Trash} size="sm">
+                      Supprimer
+                    </ActionButton>
+                  </FloatingActionGroup>
+
+                  <FloatingActionGroup className="bg-gradient-to-r from-primary-50 to-secondary-50 border-primary-200">
+                    <ActionButtonWithBadge 
+                      variant="glass" 
+                      icon={UserCircle} 
+                      badge="new"
+                      badgeVariant="success"
+                      size="sm"
+                    >
+                      Profil
+                    </ActionButtonWithBadge>
+                    <ActionButton variant="glass" icon={Gear} size="sm">
+                      Paramètres
+                    </ActionButton>
+                    <ActionButton variant="glass" icon={SignOut} size="sm">
+                      Déconnexion
+                    </ActionButton>
+                  </FloatingActionGroup>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* HR Business Semantics Section */}
+        <section>
+          <h2 className="font-heading text-2xl font-semibold text-gray-900 mb-8">Sémantique métier RH</h2>
+          <p className="text-gray-600 mb-8">Ensemble des entités métier avec leurs icônes et couleurs associées</p>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            {/* Employé */}
+            <Card className="hover-lift text-center">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-blue-50 flex items-center justify-center">
+                  <UserCircle size={24} className="text-blue-600" weight="duotone" />
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">Employé</h3>
+                <p className="text-xs text-gray-500">#3B82F6</p>
+                <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 mt-2">
+                  UserCircle
+                </Badge>
+              </CardContent>
+            </Card>
+
+            {/* Métier */}
+            <Card className="hover-lift text-center">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-purple-50 flex items-center justify-center">
+                  <BriefcaseMetal size={24} className="text-purple-600" weight="duotone" />
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">Métier</h3>
+                <p className="text-xs text-gray-500">#9333EA</p>
+                <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200 mt-2">
+                  BriefcaseMetal
+                </Badge>
+              </CardContent>
+            </Card>
+
+            {/* Poste */}
+            <Card className="hover-lift text-center">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-green-50 flex items-center justify-center">
+                  <Chair size={24} className="text-green-600" weight="duotone" />
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">Poste</h3>
+                <p className="text-xs text-gray-500">#059669</p>
+                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 mt-2">
+                  Chair
+                </Badge>
+              </CardContent>
+            </Card>
+
+            {/* Contrat */}
+            <Card className="hover-lift text-center">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-indigo-50 flex items-center justify-center">
+                  <FileText size={24} className="text-indigo-600" weight="duotone" />
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">Contrat</h3>
+                <p className="text-xs text-gray-500">#4F46E5</p>
+                <Badge variant="outline" className="bg-indigo-50 text-indigo-700 border-indigo-200 mt-2">
+                  FileText
+                </Badge>
+              </CardContent>
+            </Card>
+
+            {/* Formation */}
+            <Card className="hover-lift text-center">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-yellow-50 flex items-center justify-center">
+                  <GraduationCap size={24} className="text-yellow-600" weight="duotone" />
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">Formation</h3>
+                <p className="text-xs text-gray-500">#D97706</p>
+                <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-200 mt-2">
+                  GraduationCap
+                </Badge>
+              </CardContent>
+            </Card>
+
+            {/* Mission */}
+            <Card className="hover-lift text-center">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-red-50 flex items-center justify-center">
+                  <Target size={24} className="text-red-600" weight="duotone" />
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">Mission</h3>
+                <p className="text-xs text-gray-500">#DC2626</p>
+                <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200 mt-2">
+                  Target
+                </Badge>
+              </CardContent>
+            </Card>
+
+            {/* Compétence */}
+            <Card className="hover-lift text-center">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-teal-50 flex items-center justify-center">
+                  <Lightning size={24} className="text-teal-600" weight="duotone" />
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">Compétence</h3>
+                <p className="text-xs text-gray-500">#0D9488</p>
+                <Badge variant="outline" className="bg-teal-50 text-teal-700 border-teal-200 mt-2">
+                  Lightning
+                </Badge>
+              </CardContent>
+            </Card>
+
+            {/* Équipe */}
+            <Card className="hover-lift text-center">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-pink-50 flex items-center justify-center">
+                  <Users size={24} className="text-pink-600" weight="duotone" />
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">Équipe</h3>
+                <p className="text-xs text-gray-500">#DB2777</p>
+                <Badge variant="outline" className="bg-pink-50 text-pink-700 border-pink-200 mt-2">
+                  Users
+                </Badge>
+              </CardContent>
+            </Card>
+          </div>
+
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle>Guide d'utilisation</CardTitle>
+              <CardDescription>Comment utiliser ces entités métier dans vos interfaces</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-3">Couleurs principales</h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex items-center gap-3">
+                      <div className="w-4 h-4 rounded bg-blue-600"></div>
+                      <span className="text-gray-600">Employé - Bleu (#3B82F6)</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-4 h-4 rounded bg-purple-600"></div>
+                      <span className="text-gray-600">Métier - Violet (#9333EA)</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-4 h-4 rounded bg-green-600"></div>
+                      <span className="text-gray-600">Poste - Vert (#059669)</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-4 h-4 rounded bg-indigo-600"></div>
+                      <span className="text-gray-600">Contrat - Indigo (#4F46E5)</span>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-3">Exemples d'utilisation</h4>
+                  <div className="space-y-3 text-sm text-gray-600">
+                    <div className="flex items-center gap-2">
+                      <UserCircle size={16} className="text-blue-600" weight="duotone" />
+                      <span>Profils employés, listes RH</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <GraduationCap size={16} className="text-yellow-600" weight="duotone" />
+                      <span>Catalogues de formation, parcours</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Target size={16} className="text-red-600" weight="duotone" />
+                      <span>Objectifs, KPIs, projets</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Users size={16} className="text-pink-600" weight="duotone" />
+                      <span>Organigramme, groupes de travail</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Display Cards Section */}
+        <section>
+          <h2 className="font-heading text-2xl font-semibold text-gray-900 mb-8">Display Cards</h2>
+          <p className="text-gray-600 mb-8">Cartes d'affichage pour présenter du contenu structuré</p>
+          
+          <div className="space-y-8">
+            {/* Standard Display Card */}
+            <Card className="w-full hover-lift">
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <CardTitle className="text-lg font-semibold text-gray-900">
+                      Évaluation des performances Q4 2024
+                    </CardTitle>
+                    <CardDescription className="mt-2 text-gray-600">
+                      Bilan des objectifs et résultats obtenus durant le dernier trimestre
+                    </CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2 ml-4">
+                    <Button variant="outline" size="sm">
+                      <Download size={16} className="mr-2" />
+                      Exporter
+                    </Button>
+                    <Button size="sm">
+                      <Eye size={16} className="mr-2" />
+                      Consulter
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+            </Card>
+
+            {/* Actionnable Display Card */}
+            <Card className="w-full hover-lift border-l-4 border-l-primary-500 bg-primary-50/30">
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
+                        <Lightning size={14} className="text-primary-600" weight="duotone" />
+                      </div>
+                      <CardTitle className="text-lg font-semibold text-gray-900">
+                        Actions recommandées
+                      </CardTitle>
+                    </div>
+                    <CardDescription className="text-gray-600">
+                      Opportunités d'amélioration pour optimiser votre performance et celle de votre équipe
+                    </CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2 ml-4">
+                    <Button variant="outline" size="sm">
+                      <Calendar size={16} className="mr-2" />
+                      Planifier
+                    </Button>
+                    <Button size="sm" className="bg-primary-600 hover:bg-primary-700 text-white">
+                      <Lightning size={16} className="mr-2" />
+                      Agir maintenant
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <CardActionGroup>
+                  <CardAction
+                    icon={GraduationCap}
+                    title="Formation recommandée : Leadership avancé"
+                    description="Développez vos compétences en management pour accompagner votre équipe vers l'excellence."
+                    badge="Nouveau"
+                    badgeVariant="success"
+                    priority="high"
+                    actionLabel="S'inscrire"
+                    onAction={() => console.log('Formation clicked')}
+                  />
+                  
+                  <CardAction
+                    icon={Target}
+                    title="Définir vos objectifs Q1 2025"
+                    description="Planifiez vos objectifs du prochain trimestre en alignement avec la stratégie d'entreprise."
+                    badge="Échéance : 15 déc"
+                    badgeVariant="warning"
+                    priority="normal"
+                    actionLabel="Commencer"
+                    onAction={() => console.log('Objectifs clicked')}
+                  />
+
+                  <CardAction
+                    icon={Users}
+                    title="Feedback 360° disponible"
+                    description="Recueillez les retours de vos collègues et superviseurs pour une évaluation complète."
+                    badge="Urgent"
+                    badgeVariant="error"
+                    priority="urgent"
+                    actionLabel="Voir"
+                    onAction={() => console.log('Feedback clicked')}
+                  />
+                </CardActionGroup>
+
+                <div className="mt-6 pt-4 border-t border-gray-200">
+                  <h4 className="font-medium text-gray-900 mb-3">Actions rapides</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <QuickAction
+                      icon={UserCircle}
+                      label="Mettre à jour le profil"
+                      variant="default"
+                      onClick={() => console.log('Profil clicked')}
+                    />
+                    <QuickAction
+                      icon={Calendar}
+                      label="Planifier entretiens"
+                      count="3"
+                      variant="warning"
+                      onClick={() => console.log('Entretiens clicked')}
+                    />
+                    <QuickAction
+                      icon={FileText}
+                      label="Valider documents"
+                      count="7"
+                      variant="success"
+                      onClick={() => console.log('Documents clicked')}
+                    />
+                    <QuickAction
+                      icon={Bell}
+                      label="Configurer alertes"
+                      variant="default"
+                      onClick={() => console.log('Alertes clicked')}
+                    />
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>
