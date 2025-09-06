@@ -793,7 +793,7 @@ const DashboardPage = () => {
                 </div>
               </CardHeader>
               <CardContent>
-                <SkillsHeatmap className="w-full" showHeader={false} />
+                <SkillsHeatmap className="w-full" showHeader={false} showCard={false} />
               </CardContent>
             </Card>
 

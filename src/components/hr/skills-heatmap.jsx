@@ -7,7 +7,8 @@ import { Warning, Crown, CheckCircle, CircleDashed } from '@phosphor-icons/react
 const SkillsHeatmap = ({ 
   skills = [],
   className,
-  showHeader = true
+  showHeader = true,
+  showCard = true
 }) => {
   const defaultSkills = skills.length > 0 ? skills : [
     { skillName: 'Gestion de projet', isKey: true, currentLevel: 2.7, targetLevel: 4, status: -1.3 },
@@ -70,11 +71,8 @@ const SkillsHeatmap = ({
     return status > 0 ? `+${status.toFixed(1)}` : status.toFixed(1);
   };
 
-  return (
-    <div className={cn(
-      "bg-white rounded-xl border border-gray-200 shadow-soft p-6",
-      className
-    )}>
+  const content = (
+    <>
       {/* Header */}
       {showHeader && (
         <div className="mb-6">
@@ -225,6 +223,19 @@ const SkillsHeatmap = ({
           </div>
         </div>
       </div>
+    </>
+  );
+
+  return showCard ? (
+    <div className={cn(
+      "bg-white rounded-xl border border-gray-200 shadow-soft p-6",
+      className
+    )}>
+      {content}
+    </div>
+  ) : (
+    <div className={className}>
+      {content}
     </div>
   );
 };
