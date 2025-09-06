@@ -26,14 +26,17 @@ import {
 } from '../components/ui/modal';
 import { createToast, useToast } from '../components/ui/toast';
 import { RadioGroup, RadioOption } from '../components/ui/radio';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/ui/accordion';
 import { Skeleton, SkeletonCard, SkeletonTable, SkeletonProfile } from '../components/ui/skeleton';
 import { LoadingSpinner, PageSpinner, SectionSpinner } from '../components/ui/spinner';
 import DatePicker from '../components/ui/date-picker';
 import FileUpload from '../components/ui/file-upload';
 import ActionCard, { TrainingCard, MentoringCard, ReadingCard } from '../components/ui/action-card';
-import ActionButton, { FloatingActionGroup, ActionButtonWithBadge, ActionButtonWithProgress } from '../components/ui/action-button';
+import ActionButton, { ActionButtonWithBadge } from '../components/ui/action-button';
 import CardAction, { CardActionGroup, QuickAction } from '../components/ui/card-action';
+import PageHeader from '../components/ui/page-header';
+import NavigationBar from '../components/ui/navigation-bar';
+import SidebarMenu from '../components/ui/sidebar-menu';
+import { BusinessEntityCard, SkillStatusCard, BusinessEntityBadge, BUSINESS_ENTITIES, SKILL_STATUS } from '../components/ui/business-entity';
 import EmptyState, { 
   EmptyEmployees, 
   EmptyTraining, 
@@ -70,7 +73,14 @@ import {
   FileText,
   BriefcaseMetal,
   Chair,
-  Lightning
+  Lightning,
+  UsersThree,
+  Notebook,
+  Medal,
+  Warning,
+  CircleDashed,
+  CheckCircle,
+  Crown
 } from '@phosphor-icons/react';
 
 const ShowcasePage = () => {
@@ -111,17 +121,189 @@ const ShowcasePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8 animate-fade-in">
-      <div className="max-w-7xl mx-auto space-y-12">
-        {/* Header */}
-        <div className="mb-12">
-          <h1 className="font-heading text-4xl font-bold text-gray-900 mb-4">
-            Design System HR SaaS
-          </h1>
-          <p className="text-lg text-gray-600">
-            Showcase de tous les composants du design system
-          </p>
-        </div>
+    <div className="min-h-screen bg-gray-50 animate-fade-in">
+      {/* Page Header using PageHeader component */}
+      <PageHeader
+        icon={UsersThree}
+        iconColor="blue"
+        title="Design System HR SaaS"
+        subtitle="Showcase complet de tous les composants et patterns du design system pour applications RH"
+        statusBadge={{
+          label: "v2.1.0",
+          className: "bg-green-50 text-green-700 border-green-200"
+        }}
+        badges={[
+          { label: "Design System", className: "bg-blue-50 text-blue-700 border-blue-200" },
+          { label: "React", className: "bg-purple-50 text-purple-700 border-purple-200" },
+          { label: "Tailwind CSS", className: "bg-orange-50 text-orange-700 border-orange-200" },
+          { label: "Phosphor Icons", className: "bg-teal-50 text-teal-700 border-teal-200" }
+        ]}
+        actions={[
+          {
+            label: "Exporter",
+            icon: Download,
+            variant: "outline",
+            onClick: () => createToast.info('Code exporté', 'Composants exportés avec succès')
+          },
+          {
+            label: "Prévisualiser",
+            icon: Eye,
+            variant: "outline"
+          },
+          {
+            label: "Créer un composant",
+            icon: Plus,
+            onClick: () => createToast.success('Composant créé', 'Nouveau composant ajouté au design system')
+          }
+        ]}
+      />
+
+      <div className="max-w-7xl mx-auto p-8 space-y-12">
+
+        {/* Page Header Component */}
+        <section>
+          <h2 className="font-heading text-2xl font-semibold text-gray-900 mb-8">Header de page</h2>
+          
+          {/* Header simple */}
+          <div className="mb-8">
+            <PageHeader
+              icon={BriefcaseMetal}
+              iconColor="purple"
+              title="Référentiel des Métiers"
+              subtitle="Catalogue complet des métiers et spécialisations de l'entreprise"
+              statusBadge={{
+                label: "Actif",
+                className: "bg-blue-50 text-blue-700 border-blue-200"
+              }}
+              badges={[
+                { label: "Référentiel", className: "bg-purple-50 text-purple-700 border-purple-200 text-xs" },
+                { label: "Métiers", className: "bg-orange-50 text-orange-700 border-orange-200 text-xs" },
+                { label: "Compétences", className: "bg-teal-50 text-teal-700 border-teal-200 text-xs" }
+              ]}
+              actions={[
+                {
+                  label: "Modifier",
+                  icon: PencilSimple,
+                  variant: "outline",
+                  size: "sm"
+                },
+                {
+                  label: "Ajouter",
+                  icon: Plus,
+                  size: "sm"
+                }
+              ]}
+            />
+          </div>
+
+          {/* Header avec informations 2 colonnes */}
+          <div className="mb-8">
+            <PageHeader
+              icon={Users}
+              iconColor="blue"
+              title="Gestion des Employés"
+              subtitle="Vue d'ensemble de votre équipe et de leurs performances"
+              statusBadge={{
+                label: "127 actifs",
+                className: "bg-green-50 text-green-700 border-green-200"
+              }}
+              badges={[
+                { label: "RH", className: "bg-blue-50 text-blue-700 border-blue-200 text-xs" },
+                { label: "Management", className: "bg-indigo-50 text-indigo-700 border-indigo-200 text-xs" }
+              ]}
+              actions={[
+                {
+                  label: "Exporter",
+                  icon: Download,
+                  variant: "outline",
+                  size: "sm"
+                },
+                {
+                  label: "Nouveau",
+                  icon: Plus,
+                  size: "sm"
+                }
+              ]}
+              infoSections={[
+                {
+                  title: "ÉQUIPE",
+                  fields: [
+                    { label: "Responsable RH", value: "Marie Dubois" },
+                    { label: "Effectif total", value: "127 employés" },
+                    { label: "Dernière évaluation", value: "Q3 2024" }
+                  ]
+                },
+                {
+                  title: "PERFORMANCES",
+                  fields: [
+                    { label: "Taux de satisfaction", value: "94%" },
+                    { label: "Turnover annuel", value: "8.2%" },
+                    { label: "Absentéisme", value: "3.1%" }
+                  ]
+                }
+              ]}
+            />
+          </div>
+
+          {/* Header avec informations 3 colonnes */}
+          <div className="mb-8">
+            <PageHeader
+              icon={GraduationCap}
+              iconColor="yellow"
+              title="Centre de Formation"
+              subtitle="Développez les compétences de vos équipes avec nos programmes personnalisés"
+              statusBadge={{
+                label: "15 formations",
+                className: "bg-orange-50 text-orange-700 border-orange-200"
+              }}
+              badges={[
+                { label: "Formation", className: "bg-yellow-50 text-yellow-700 border-yellow-200 text-xs" },
+                { label: "E-learning", className: "bg-purple-50 text-purple-700 border-purple-200 text-xs" },
+                { label: "Certifiant", className: "bg-green-50 text-green-700 border-green-200 text-xs" }
+              ]}
+              actions={[
+                {
+                  label: "Planifier",
+                  icon: Calendar,
+                  variant: "outline",
+                  size: "sm"
+                },
+                {
+                  label: "Créer formation",
+                  icon: Plus,
+                  size: "sm"
+                }
+              ]}
+              infoSections={[
+                {
+                  title: "PROGRAMMES",
+                  fields: [
+                    { label: "Formations actives", value: "15" },
+                    { label: "Modules e-learning", value: "28" },
+                    { label: "Certifications", value: "7" }
+                  ]
+                },
+                {
+                  title: "PARTICIPANTS",
+                  fields: [
+                    { label: "Inscrits total", value: "89 employés" },
+                    { label: "Taux completion", value: "87%" },
+                    { label: "Satisfaction moyenne", value: "4.6/5" }
+                  ]
+                },
+                {
+                  title: "PLANIFICATION",
+                  fields: [
+                    { label: "Prochaine session", value: "12 Nov 2024" },
+                    { label: "Budget utilisé", value: "68%" },
+                    { label: "Formateurs", value: "12 actifs" }
+                  ]
+                }
+              ]}
+            />
+          </div>
+
+        </section>
 
         {/* Colors Section */}
         <section>
@@ -594,75 +776,41 @@ const ShowcasePage = () => {
           </Card>
         </section>
 
-        {/* Data Display Advanced */}
+
+        {/* Loading States Section */}
         <section>
-          <h2 className="font-heading text-2xl font-semibold text-gray-900 mb-8">Affichage avancé</h2>
-          
-          {/* Accordion */}
-          <div className="mb-8">
-            <h3 className="text-lg font-medium text-gray-900 mb-4">Accordion</h3>
+          <h2 className="font-heading text-2xl font-semibold text-gray-900 mb-8">États de chargement</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <Card className="hover-lift">
-              <CardContent className="pt-6">
-                <Accordion type="single" collapsible defaultValue="item1">
-                  <AccordionItem value="item1">
-                    <AccordionTrigger>
-                      Comment gérer les évaluations ?
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      Vous pouvez créer et assigner des évaluations à vos employés via le module RH. 
-                      Les évaluations peuvent être périodiques ou ponctuelles selon vos besoins.
-                    </AccordionContent>
-                  </AccordionItem>
-                  
-                  <AccordionItem value="item2">
-                    <AccordionTrigger>
-                      Planification des formations
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      Planifiez des formations en groupe ou individuelles. Le système enverra 
-                      automatiquement des rappels aux participants.
-                    </AccordionContent>
-                  </AccordionItem>
-                  
-                  <AccordionItem value="item3">
-                    <AccordionTrigger>
-                      Suivi des compétences
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      Suivez l'évolution des compétences de vos équipes avec des tableaux de bord 
-                      détaillés et des rapports personnalisables.
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
+              <CardHeader>
+                <CardTitle>Skeleton Loading</CardTitle>
+                <CardDescription>Affichage de contenu en cours de chargement</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <SkeletonCard />
               </CardContent>
             </Card>
-          </div>
-
-          {/* Loading States */}
-          <div>
-            <h3 className="text-lg font-medium text-gray-900 mb-4">États de chargement</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="hover-lift">
-                <CardHeader>
-                  <CardTitle>Skeleton Loading</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <SkeletonCard />
-                </CardContent>
-              </Card>
-              
-              <Card className="hover-lift">
-                <CardHeader>
-                  <CardTitle>Spinners</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <LoadingSpinner text="Chargement des données..." />
-                  <div className="flex gap-4 justify-center">
-                    <SectionSpinner />
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+            
+            <Card className="hover-lift">
+              <CardHeader>
+                <CardTitle>Spinners</CardTitle>
+                <CardDescription>Indicateurs de chargement animés</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <LoadingSpinner text="Chargement des données..." />
+                <div className="flex gap-4 justify-center">
+                  <SectionSpinner />
+                </div>
+                <div className="flex flex-wrap gap-4 mt-4">
+                  <ActionButton variant="primary" loading>
+                    Chargement
+                  </ActionButton>
+                  <ActionButton variant="secondary" icon={Upload}>
+                    Upload terminé
+                  </ActionButton>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
@@ -1309,45 +1457,53 @@ const ShowcasePage = () => {
             </Card>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-            {/* Top Navigation */}
-            <Card className="hover-lift">
-              <CardHeader>
-                <CardTitle>Barre de navigation supérieure</CardTitle>
-                <CardDescription>Navigation horizontale avec actions</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <div className="flex items-center gap-6">
-                    <a href="#" className="flex items-center gap-2 text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors">
-                      <House size={16} weight="duotone" />
-                      Accueil
-                    </a>
-                    <a href="#" className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
-                      <Users size={16} weight="duotone" />
-                      Équipe
-                    </a>
-                    <a href="#" className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
-                      <ChartBar size={16} weight="duotone" />
-                      Rapports
-                    </a>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <button className="p-2 text-gray-500 hover:text-gray-700 hover:bg-white rounded-lg transition-colors">
-                      <Bell size={18} weight="duotone" />
-                    </button>
-                    <button className="p-2 text-gray-500 hover:text-gray-700 hover:bg-white rounded-lg transition-colors">
-                      <ChatCircle size={18} weight="duotone" />
-                    </button>
-                    <button className="flex items-center gap-2 p-2 text-gray-700 hover:bg-white rounded-lg transition-colors">
-                      <UserCircle size={18} weight="duotone" />
-                      <CaretDown size={14} />
-                    </button>
-                  </div>
+          {/* Top Navigation - Full Width */}
+          <Card className="hover-lift mb-8">
+            <CardHeader>
+              <CardTitle>Barre de navigation supérieure</CardTitle>
+              <CardDescription>Navigation horizontale avec actions - 100% width</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div className="flex items-center gap-6">
+                  <a href="#" className="flex items-center gap-2 text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors">
+                    <House size={16} weight="duotone" />
+                    Accueil
+                  </a>
+                  <a href="#" className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                    <Users size={16} weight="duotone" />
+                    Équipe
+                  </a>
+                  <a href="#" className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                    <ChartBar size={16} weight="duotone" />
+                    Rapports
+                  </a>
+                  <a href="#" className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                    <GraduationCap size={16} weight="duotone" />
+                    Formations
+                  </a>
+                  <a href="#" className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                    <Calendar size={16} weight="duotone" />
+                    Planning
+                  </a>
                 </div>
-              </CardContent>
-            </Card>
+                <div className="flex items-center gap-3">
+                  <button className="p-2 text-gray-500 hover:text-gray-700 hover:bg-white rounded-lg transition-colors">
+                    <Bell size={18} weight="duotone" />
+                  </button>
+                  <button className="p-2 text-gray-500 hover:text-gray-700 hover:bg-white rounded-lg transition-colors">
+                    <ChatCircle size={18} weight="duotone" />
+                  </button>
+                  <button className="flex items-center gap-2 p-2 text-gray-700 hover:bg-white rounded-lg transition-colors">
+                    <UserCircle size={18} weight="duotone" />
+                    <CaretDown size={14} />
+                  </button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
             {/* Dropdown Menu */}
             <Card className="hover-lift">
@@ -1567,87 +1723,35 @@ const ShowcasePage = () => {
                     </div>
                   </div>
 
-                  {/* Boutons avec progress */}
-                  <div>
-                    <h4 className="font-medium text-gray-900 mb-3">Avec indicateur de progression</h4>
-                    <div className="flex flex-wrap gap-4">
-                      <ActionButtonWithProgress 
-                        variant="primary" 
-                        icon={GraduationCap}
-                        progress={75}
-                      >
-                        Formation en cours
-                      </ActionButtonWithProgress>
-                      <ActionButtonWithProgress 
-                        variant="success" 
-                        icon={Target}
-                        progress={90}
-                      >
-                        Objectifs 2024
-                      </ActionButtonWithProgress>
-                      <ActionButtonWithProgress 
-                        variant="info" 
-                        icon={FileText}
-                        progress={45}
-                      >
-                        Évaluations
-                      </ActionButtonWithProgress>
-                    </div>
-                  </div>
 
-                  {/* États de chargement */}
-                  <div>
-                    <h4 className="font-medium text-gray-900 mb-3">États de chargement</h4>
-                    <div className="flex flex-wrap gap-4">
-                      <ActionButton variant="primary" loading>
-                        Chargement
-                      </ActionButton>
-                      <ActionButton variant="secondary" icon={Upload}>
-                        Upload terminé
-                      </ActionButton>
-                    </div>
-                  </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Floating Action Groups */}
+            {/* Action avec badge simple */}
             <Card className="hover-lift">
               <CardHeader>
-                <CardTitle>Groupes d'actions flottantes</CardTitle>
-                <CardDescription>Conteneurs stylés pour grouper les boutons d'actions</CardDescription>
+                <CardTitle>Bouton d'action avec badge</CardTitle>
+                <CardDescription>Action avec indicateur ou notification</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-6">
-                  <FloatingActionGroup>
-                    <ActionButton variant="primary" icon={Plus} size="sm">
-                      Créer
-                    </ActionButton>
-                    <ActionButton variant="outline" icon={PencilSimple} size="sm">
-                      Modifier
-                    </ActionButton>
-                    <ActionButton variant="outline" icon={Trash} size="sm">
-                      Supprimer
-                    </ActionButton>
-                  </FloatingActionGroup>
-
-                  <FloatingActionGroup className="bg-gradient-to-r from-primary-50 to-secondary-50 border-primary-200">
-                    <ActionButtonWithBadge 
-                      variant="glass" 
-                      icon={UserCircle} 
-                      badge="new"
-                      badgeVariant="success"
-                      size="sm"
-                    >
-                      Profil
-                    </ActionButtonWithBadge>
-                    <ActionButton variant="glass" icon={Gear} size="sm">
-                      Paramètres
-                    </ActionButton>
-                    <ActionButton variant="glass" icon={SignOut} size="sm">
-                      Déconnexion
-                    </ActionButton>
-                  </FloatingActionGroup>
+                <div className="flex flex-wrap gap-4">
+                  <ActionButtonWithBadge 
+                    variant="primary" 
+                    icon={UserCircle} 
+                    badge="3"
+                    badgeVariant="error"
+                  >
+                    Notifications
+                  </ActionButtonWithBadge>
+                  <ActionButtonWithBadge 
+                    variant="outline" 
+                    icon={Bell} 
+                    badge="new"
+                    badgeVariant="success"
+                  >
+                    Messages
+                  </ActionButtonWithBadge>
                 </div>
               </CardContent>
             </Card>
@@ -1660,114 +1764,71 @@ const ShowcasePage = () => {
           <p className="text-gray-600 mb-8">Ensemble des entités métier avec leurs icônes et couleurs associées</p>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-            {/* Employé */}
-            <Card className="hover-lift text-center">
-              <CardContent className="p-6">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-blue-50 flex items-center justify-center">
-                  <UserCircle size={24} className="text-blue-600" weight="duotone" />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Employé</h3>
-                <p className="text-xs text-gray-500">#3B82F6</p>
-                <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 mt-2">
-                  UserCircle
-                </Badge>
-              </CardContent>
-            </Card>
+            <BusinessEntityCard entity="employee" icon={UsersThree} />
+            <BusinessEntityCard entity="job" icon={BriefcaseMetal} />
+            <BusinessEntityCard entity="position" icon={Chair} />
+            <BusinessEntityCard entity="contract" icon={FileText} />
+            <BusinessEntityCard entity="training" icon={GraduationCap} />
+            <BusinessEntityCard entity="mission" icon={Notebook} />
+            <BusinessEntityCard entity="skill" icon={Medal} />
+            <BusinessEntityCard entity="team" icon={Users} />
+          </div>
 
-            {/* Métier */}
+          {/* Compatibility Section with Heatmap Icons */}
+          <h3 className="font-heading text-xl font-semibold text-gray-900 mb-6">Compatibilité avec la heatmap</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            {/* Critique */}
             <Card className="hover-lift text-center">
               <CardContent className="p-6">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-purple-50 flex items-center justify-center">
-                  <BriefcaseMetal size={24} className="text-purple-600" weight="duotone" />
+                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-red-50 border border-red-200 flex items-center justify-center">
+                  <Warning size={24} className="text-red-700" weight="duotone" />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Métier</h3>
-                <p className="text-xs text-gray-500">#9333EA</p>
-                <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200 mt-2">
-                  BriefcaseMetal
-                </Badge>
-              </CardContent>
-            </Card>
-
-            {/* Poste */}
-            <Card className="hover-lift text-center">
-              <CardContent className="p-6">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-green-50 flex items-center justify-center">
-                  <Chair size={24} className="text-green-600" weight="duotone" />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Poste</h3>
-                <p className="text-xs text-gray-500">#059669</p>
-                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 mt-2">
-                  Chair
-                </Badge>
-              </CardContent>
-            </Card>
-
-            {/* Contrat */}
-            <Card className="hover-lift text-center">
-              <CardContent className="p-6">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-indigo-50 flex items-center justify-center">
-                  <FileText size={24} className="text-indigo-600" weight="duotone" />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Contrat</h3>
-                <p className="text-xs text-gray-500">#4F46E5</p>
-                <Badge variant="outline" className="bg-indigo-50 text-indigo-700 border-indigo-200 mt-2">
-                  FileText
-                </Badge>
-              </CardContent>
-            </Card>
-
-            {/* Formation */}
-            <Card className="hover-lift text-center">
-              <CardContent className="p-6">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-yellow-50 flex items-center justify-center">
-                  <GraduationCap size={24} className="text-yellow-600" weight="duotone" />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Formation</h3>
-                <p className="text-xs text-gray-500">#D97706</p>
-                <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-200 mt-2">
-                  GraduationCap
-                </Badge>
-              </CardContent>
-            </Card>
-
-            {/* Mission */}
-            <Card className="hover-lift text-center">
-              <CardContent className="p-6">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-red-50 flex items-center justify-center">
-                  <Target size={24} className="text-red-600" weight="duotone" />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Mission</h3>
-                <p className="text-xs text-gray-500">#DC2626</p>
+                <h3 className="font-semibold text-red-700 mb-2">Critique</h3>
+                <p className="text-xs text-gray-500">#B91C1C</p>
                 <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200 mt-2">
-                  Target
+                  Warning
                 </Badge>
               </CardContent>
             </Card>
 
-            {/* Compétence */}
+            {/* À améliorer */}
             <Card className="hover-lift text-center">
               <CardContent className="p-6">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-teal-50 flex items-center justify-center">
-                  <Lightning size={24} className="text-teal-600" weight="duotone" />
+                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-orange-50 border border-orange-200 flex items-center justify-center">
+                  <CircleDashed size={24} className="text-orange-700" weight="duotone" />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Compétence</h3>
-                <p className="text-xs text-gray-500">#0D9488</p>
-                <Badge variant="outline" className="bg-teal-50 text-teal-700 border-teal-200 mt-2">
-                  Lightning
+                <h3 className="font-semibold text-orange-700 mb-2">À améliorer</h3>
+                <p className="text-xs text-gray-500">#C2410C</p>
+                <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200 mt-2">
+                  CircleDashed
                 </Badge>
               </CardContent>
             </Card>
 
-            {/* Équipe */}
+            {/* Acquis */}
             <Card className="hover-lift text-center">
               <CardContent className="p-6">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-pink-50 flex items-center justify-center">
-                  <Users size={24} className="text-pink-600" weight="duotone" />
+                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-green-50 border border-green-200 flex items-center justify-center">
+                  <CheckCircle size={24} className="text-green-700" weight="duotone" />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Équipe</h3>
-                <p className="text-xs text-gray-500">#DB2777</p>
-                <Badge variant="outline" className="bg-pink-50 text-pink-700 border-pink-200 mt-2">
-                  Users
+                <h3 className="font-semibold text-green-700 mb-2">Acquis</h3>
+                <p className="text-xs text-gray-500">#15803D</p>
+                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 mt-2">
+                  CheckCircle
+                </Badge>
+              </CardContent>
+            </Card>
+
+            {/* Expertise */}
+            <Card className="hover-lift text-center">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-green-50 border border-green-200 flex items-center justify-center">
+                  <Crown size={24} className="text-yellow-500" weight="duotone" />
+                </div>
+                <h3 className="font-semibold text-green-700 mb-2">Expertise</h3>
+                <p className="text-xs text-gray-500">Couronne dorée</p>
+                <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-200 mt-2">
+                  Crown
                 </Badge>
               </CardContent>
             </Card>
@@ -1799,26 +1860,107 @@ const ShowcasePage = () => {
                       <div className="w-4 h-4 rounded bg-indigo-600"></div>
                       <span className="text-gray-600">Contrat - Indigo (#4F46E5)</span>
                     </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-4 h-4 rounded bg-yellow-600"></div>
+                      <span className="text-gray-600">Formation - Jaune (#D97706)</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-4 h-4 rounded bg-slate-600"></div>
+                      <span className="text-gray-600">Mission - Slate (#475569)</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-4 h-4 rounded bg-teal-600"></div>
+                      <span className="text-gray-600">Compétence - Teal (#0D9488)</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-4 h-4 rounded bg-pink-600"></div>
+                      <span className="text-gray-600">Équipe - Rose (#DB2777)</span>
+                    </div>
                   </div>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-3">Exemples d'utilisation</h4>
                   <div className="space-y-3 text-sm text-gray-600">
                     <div className="flex items-center gap-2">
-                      <UserCircle size={16} className="text-blue-600" weight="duotone" />
-                      <span>Profils employés, listes RH</span>
+                      <UsersThree size={16} className="text-blue-600" weight="duotone" />
+                      <span>Profils employés, annuaires RH</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <BriefcaseMetal size={16} className="text-purple-600" weight="duotone" />
+                      <span>Fiches métier, référentiel de postes</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Chair size={16} className="text-green-600" weight="duotone" />
+                      <span>Organigramme, définitions de poste</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FileText size={16} className="text-indigo-600" weight="duotone" />
+                      <span>Gestion contractuelle, avenants</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <GraduationCap size={16} className="text-yellow-600" weight="duotone" />
                       <span>Catalogues de formation, parcours</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Target size={16} className="text-red-600" weight="duotone" />
-                      <span>Objectifs, KPIs, projets</span>
+                      <Notebook size={16} className="text-red-600" weight="duotone" />
+                      <span>Projets, objectifs, missions temporaires</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Medal size={16} className="text-teal-600" weight="duotone" />
+                      <span>Référentiel compétences, évaluations</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Users size={16} className="text-pink-600" weight="duotone" />
-                      <span>Organigramme, groupes de travail</span>
+                      <span>Groupes de travail, équipes projet</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Section Statuts de la Heatmap */}
+              <div className="mt-8 pt-6 border-t border-gray-200">
+                <h4 className="font-semibold text-gray-900 mb-4">Statuts de compétences (Heatmap)</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="font-medium text-gray-800 mb-3">Couleurs de statut</h5>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex items-center gap-3">
+                        <div className="w-4 h-4 rounded bg-red-600"></div>
+                        <span className="text-gray-600">Critique - Rouge (#B91C1C)</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-4 h-4 rounded bg-orange-600"></div>
+                        <span className="text-gray-600">À améliorer - Orange (#C2410C)</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-4 h-4 rounded bg-green-600"></div>
+                        <span className="text-gray-600">Acquis - Vert (#15803D)</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-4 h-4 rounded bg-yellow-500"></div>
+                        <span className="text-gray-600">Expertise - Couronne dorée</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h5 className="font-medium text-gray-800 mb-3">Usage des icônes</h5>
+                    <div className="space-y-3 text-sm text-gray-600">
+                      <div className="flex items-center gap-2">
+                        <Warning size={16} className="text-red-600" weight="duotone" />
+                        <span>Compétences critiques nécessitant une action urgente</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <CircleDashed size={16} className="text-orange-600" weight="duotone" />
+                        <span>Compétences en développement, formation requise</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <CheckCircle size={16} className="text-green-600" weight="duotone" />
+                        <span>Compétences maîtrisées, niveau attendu atteint</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Crown size={16} className="text-yellow-500" weight="duotone" />
+                        <span>Niveau d'expertise, mentor potentiel</span>
+                      </div>
                     </div>
                   </div>
                 </div>
