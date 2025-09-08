@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import PageHeader from '../components/ui/page-header';
-import NavigationBar from '../components/ui/navigation-bar';
-import SidebarMenu from '../components/ui/sidebar-menu';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/card';
-import { Badge } from '../components/ui/badge';
+import { Badge, StatusDot } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { Progress } from '../components/ui/progress';
 import StatCard from '../components/ui/stat-card';
@@ -43,150 +41,11 @@ import {
   Clock,
   ArrowRight,
   Warning,
-  CheckCircle
+  CheckCircle,
+  CaretDown
 } from '@phosphor-icons/react';
 
 const DashboardPage = () => {
-  const [userMenuOpen, setUserMenuOpen] = useState(false);
-
-  // Configuration du menu latéral
-  const sidebarConfig = {
-    header: {
-      logo: "HR",
-      title: "HR Platform",
-      subtitle: "Design System"
-    },
-    groups: [
-      {
-        title: "Navigation principale",
-        items: [
-          {
-            icon: House,
-            label: "Tableau de bord",
-            href: "/dashboard",
-            isActive: true
-          },
-          {
-            icon: UsersThree,
-            label: "Employés",
-            href: "/employees",
-            badge: { label: "124", className: "bg-blue-100 text-blue-800" }
-          },
-          {
-            icon: BriefcaseMetal,
-            label: "Postes",
-            href: "/jobs",
-            badge: { label: "8", className: "bg-purple-100 text-purple-800" }
-          },
-          {
-            icon: GraduationCap,
-            label: "Formations",
-            href: "/training",
-            badge: { label: "3", className: "bg-yellow-100 text-yellow-800" }
-          }
-        ]
-      },
-      {
-        title: "Gestion",
-        items: [
-          {
-            icon: FileText,
-            label: "Contrats",
-            href: "/contracts",
-            children: [
-              { label: "CDI", href: "/contracts/cdi" },
-              { label: "CDD", href: "/contracts/cdd" },
-              { label: "Freelance", href: "/contracts/freelance" }
-            ]
-          },
-          {
-            icon: Medal,
-            label: "Compétences",
-            href: "/skills"
-          },
-          {
-            icon: ChartBar,
-            label: "Analyses",
-            href: "/analytics"
-          }
-        ]
-      },
-      {
-        title: "Administration",
-        items: [
-          {
-            icon: Buildings,
-            label: "Entreprise",
-            href: "/company"
-          },
-          {
-            icon: Gear,
-            label: "Paramètres",
-            href: "/settings"
-          }
-        ]
-      }
-    ]
-  };
-
-  // Configuration de la barre de navigation
-  const navigationConfig = {
-    items: [
-      {
-        icon: House,
-        label: "Accueil",
-        href: "/",
-        isActive: false
-      },
-      {
-        icon: ChartBar,
-        label: "Dashboard",
-        href: "/dashboard",
-        isActive: true
-      },
-      {
-        icon: FolderOpen,
-        label: "Projets",
-        href: "/projects"
-      }
-    ],
-    actions: [
-      {
-        icon: Bell,
-        badge: true,
-        tooltip: "Notifications",
-        onClick: () => console.log('Notifications clicked')
-      },
-      {
-        icon: ChatCircle,
-        tooltip: "Messages",
-        onClick: () => console.log('Messages clicked')
-      }
-    ],
-    user: {
-      name: "Marie Dubois",
-      email: "marie.dubois@company.com",
-      initials: "MD"
-    },
-    userMenuItems: [
-      {
-        icon: UserCircle,
-        label: "Mon profil",
-        onClick: () => console.log('Profile clicked')
-      },
-      {
-        icon: Gear,
-        label: "Paramètres",
-        onClick: () => console.log('Settings clicked')
-      },
-      {
-        icon: SignOut,
-        label: "Se déconnecter",
-        variant: "danger",
-        onClick: () => console.log('Logout clicked')
-      }
-    ]
-  };
 
   // Données d'exemple
   const sampleEmployee = {
@@ -259,8 +118,122 @@ const DashboardPage = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar Menu - Sticky Full Height */}
-      <div className="w-80 bg-white border-r border-gray-200 sticky top-0 h-screen overflow-y-auto flex-shrink-0">
-        <SidebarMenu {...sidebarConfig} className="h-full border-none shadow-none rounded-none" width="100%" height="100%" />
+      <div className="w-[270px] bg-white border-r border-gray-200 sticky top-0 h-screen overflow-y-auto flex-shrink-0">
+        <div className="p-4 h-full">
+          <div className="mb-6">
+            <div className="flex items-center gap-3 px-3 py-2 text-gray-900">
+              <Buildings size={24} className="text-primary-600" weight="duotone" />
+              <div>
+                <h3 className="font-semibold text-sm">Mon Entreprise RH</h3>
+                <p className="text-xs text-gray-500">Version 2.1.0</p>
+              </div>
+            </div>
+          </div>
+          
+          <nav className="space-y-1">
+            {/* Tableau de bord */}
+            <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-white bg-primary-600 rounded-lg transition-colors">
+              <House size={18} weight="duotone" />
+              <span>Tableau de bord</span>
+            </a>
+            
+            {/* Employés avec sous-menu */}
+            <div className="space-y-1">
+              <button className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                <Users size={18} weight="duotone" />
+                <span className="flex-1 text-left">Employés</span>
+                <CaretDown size={14} className="transform transition-transform" />
+              </button>
+              <div className="ml-6 space-y-1 border-l-2 border-gray-200 pl-4">
+                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                  <UserCircle size={14} weight="duotone" />
+                  Liste des employés
+                </a>
+                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                  <Plus size={14} weight="duotone" />
+                  Ajouter un employé
+                </a>
+                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                  <Buildings size={14} weight="duotone" />
+                  Organigramme
+                </a>
+              </div>
+            </div>
+            
+            {/* Analytics */}
+            <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+              <ChartBar size={18} weight="duotone" />
+              <span>Analytics</span>
+            </a>
+            
+            {/* Formations avec sous-menu */}
+            <div className="space-y-1">
+              <button className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                <GraduationCap size={18} weight="duotone" />
+                <span className="flex-1 text-left">Formations</span>
+                <CaretDown size={14} className="transform transition-transform" />
+              </button>
+              <div className="ml-6 space-y-1 border-l-2 border-gray-200 pl-4">
+                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                  <FolderOpen size={14} weight="duotone" />
+                  Catalogue
+                </a>
+                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                  <Calendar size={14} weight="duotone" />
+                  Planification
+                </a>
+                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                  <ClockCounterClockwise size={14} weight="duotone" />
+                  Historique
+                </a>
+              </div>
+            </div>
+            
+            {/* Planning */}
+            <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+              <Calendar size={18} weight="duotone" />
+              <span>Planning</span>
+            </a>
+            
+            {/* Documents avec sous-menu */}
+            <div className="space-y-1">
+              <button className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                <FolderOpen size={18} weight="duotone" />
+                <span className="flex-1 text-left">Documents</span>
+                <CaretDown size={14} className="transform transition-transform" />
+              </button>
+              <div className="ml-6 space-y-1 border-l-2 border-gray-200 pl-4">
+                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                  <FileText size={14} weight="duotone" />
+                  Contrats
+                </a>
+                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                  <FolderOpen size={14} weight="duotone" />
+                  Dossiers RH
+                </a>
+                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                  <Download size={14} weight="duotone" />
+                  Templates
+                </a>
+              </div>
+            </div>
+            
+            {/* Séparateur */}
+            <div className="my-4 border-t border-gray-200"></div>
+            
+            {/* Paramètres */}
+            <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+              <Gear size={18} weight="duotone" />
+              <span>Paramètres</span>
+            </a>
+            
+            {/* Support */}
+            <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+              <ChatCircle size={18} weight="duotone" />
+              <span>Support</span>
+            </a>
+          </nav>
+        </div>
       </div>
 
       {/* Main Content Area */}
@@ -299,17 +272,17 @@ const DashboardPage = () => {
           {/* Main Content */}
           <div className="space-y-8">
             {/* Actions recommandées en premier */}
-            <Card className="w-full border-l-4 border-l-primary-500 bg-primary-50/30">
+            <Card variant="elevated" className="w-full border-l-2 border-l-accent-500">
               <CardHeader>
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center">
-                    <Lightning size={14} className="text-primary-600" weight="duotone" />
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-8 h-8 bg-accent-50 rounded-lg flex items-center justify-center">
+                    <Lightning size={16} className="text-accent-600" weight="duotone" />
                   </div>
-                  <CardTitle className="text-lg font-semibold text-gray-900">
+                  <CardTitle size="lg" className="text-neutral-900">
                     Actions recommandées
                   </CardTitle>
                 </div>
-                <CardDescription className="text-gray-600">
+                <CardDescription>
                   Opportunités d'amélioration pour optimiser votre performance et celle de votre équipe
                 </CardDescription>
               </CardHeader>
@@ -341,12 +314,12 @@ const DashboardPage = () => {
             </Card>
 
             {/* DataTable - Liste employés */}
-            <Card className="w-full">
+            <Card variant="default" className="w-full">
               <CardHeader>
-                <CardTitle className="text-lg font-semibold text-gray-900">
+                <CardTitle size="lg" className="text-neutral-900">
                   Liste des employés
                 </CardTitle>
-                <CardDescription className="mt-2 text-gray-600">
+                <CardDescription className="mt-1">
                   Gestion et suivi de tous les collaborateurs de l'entreprise
                 </CardDescription>
               </CardHeader>
@@ -411,12 +384,12 @@ const DashboardPage = () => {
                       sortable: true,
                       render: (value, row) => (
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                            <span className="text-blue-600 text-xs font-medium">{value.charAt(0)}</span>
+                          <div className="w-8 h-8 bg-neutral-100 rounded-lg flex items-center justify-center">
+                            <span className="text-neutral-600 text-xs font-medium">{value.charAt(0)}</span>
                           </div>
                           <div>
-                            <p className="font-medium text-gray-900">{value}</p>
-                            <p className="text-sm text-gray-500">{row.role}</p>
+                            <p className="font-medium text-neutral-900">{value}</p>
+                            <p className="text-sm text-neutral-500">{row.role}</p>
                           </div>
                         </div>
                       )
@@ -436,11 +409,12 @@ const DashboardPage = () => {
                       label: 'Statut',
                       render: (value) => (
                         <Badge 
-                          variant="outline" 
-                          className={
-                            value === 'Actif' ? 'bg-green-50 text-green-700 border-green-200' :
-                            value === 'En congé' ? 'bg-orange-50 text-orange-700 border-orange-200' :
-                            'bg-gray-50 text-gray-700 border-gray-200'
+                          variant="dot" 
+                          dot={true}
+                          dotColor={
+                            value === 'Actif' ? 'success' :
+                            value === 'En congé' ? 'alert' :
+                            'neutral'
                           }
                         >
                           {value}
@@ -483,12 +457,12 @@ const DashboardPage = () => {
             </Card>
 
             {/* Stats Section */}
-            <Card className="w-full">
+            <Card variant="default" className="w-full">
               <CardHeader>
-                <CardTitle className="text-lg font-semibold text-gray-900">
+                <CardTitle size="lg" className="text-neutral-900">
                   Métriques clés
                 </CardTitle>
-                <CardDescription className="mt-2 text-gray-600">
+                <CardDescription className="mt-1">
                   Indicateurs de performance et statistiques importantes
                 </CardDescription>
               </CardHeader>
@@ -693,12 +667,12 @@ const DashboardPage = () => {
 
 
             {/* Skills Overview */}
-            <Card className="w-full">
+            <Card variant="default" className="w-full">
               <CardHeader>
-                <CardTitle className="text-lg font-semibold text-gray-900">
+                <CardTitle size="lg" className="text-neutral-900">
                   Vue d'ensemble des compétences
                 </CardTitle>
-                <CardDescription className="mt-2 text-gray-600">
+                <CardDescription className="mt-1">
                   Radar des compétences de l'équipe avec indicateurs de performance
                 </CardDescription>
               </CardHeader>
