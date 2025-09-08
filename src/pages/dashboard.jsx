@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PageHeader from '../components/ui/page-header';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/card';
-import { Badge, StatusDot } from '../components/ui/badge';
+import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { Progress } from '../components/ui/progress';
 import StatCard from '../components/ui/stat-card';
@@ -120,40 +120,36 @@ const DashboardPage = () => {
       {/* Sidebar Menu - Sticky Full Height */}
       <div className="w-[270px] bg-white border-r border-gray-200 sticky top-0 h-screen overflow-y-auto flex-shrink-0">
         <div className="p-4 h-full">
-          <div className="mb-6">
-            <div className="flex items-center gap-3 px-3 py-2 text-gray-900">
-              <Buildings size={24} className="text-primary-600" weight="duotone" />
-              <div>
-                <h3 className="font-semibold text-sm">Mon Entreprise RH</h3>
-                <p className="text-xs text-gray-500">Version 2.1.0</p>
-              </div>
+          <div className="mb-4">
+            <div className="flex items-center justify-center px-3 py-2 text-gray-900">
+              <img src="/Vector.svg" alt="Logo" className="h-8 w-auto" />
             </div>
           </div>
           
           <nav className="space-y-1">
             {/* Tableau de bord */}
-            <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-white bg-primary-600 rounded-lg transition-colors">
+            <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-primary-600 bg-primary-50 rounded-lg transition-colors">
               <House size={18} weight="duotone" />
               <span>Tableau de bord</span>
             </a>
             
             {/* Employés avec sous-menu */}
             <div className="space-y-1">
-              <button className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+              <button className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors">
                 <Users size={18} weight="duotone" />
                 <span className="flex-1 text-left">Employés</span>
                 <CaretDown size={14} className="transform transition-transform" />
               </button>
               <div className="ml-6 space-y-1 border-l-2 border-gray-200 pl-4">
-                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary-600 transition-colors">
                   <UserCircle size={14} weight="duotone" />
                   Liste des employés
                 </a>
-                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary-600 transition-colors">
                   <Plus size={14} weight="duotone" />
                   Ajouter un employé
                 </a>
-                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary-600 transition-colors">
                   <Buildings size={14} weight="duotone" />
                   Organigramme
                 </a>
@@ -161,28 +157,28 @@ const DashboardPage = () => {
             </div>
             
             {/* Analytics */}
-            <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+            <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors">
               <ChartBar size={18} weight="duotone" />
               <span>Analytics</span>
             </a>
             
             {/* Formations avec sous-menu */}
             <div className="space-y-1">
-              <button className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+              <button className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors">
                 <GraduationCap size={18} weight="duotone" />
                 <span className="flex-1 text-left">Formations</span>
                 <CaretDown size={14} className="transform transition-transform" />
               </button>
               <div className="ml-6 space-y-1 border-l-2 border-gray-200 pl-4">
-                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary-600 transition-colors">
                   <FolderOpen size={14} weight="duotone" />
                   Catalogue
                 </a>
-                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary-600 transition-colors">
                   <Calendar size={14} weight="duotone" />
                   Planification
                 </a>
-                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary-600 transition-colors">
                   <ClockCounterClockwise size={14} weight="duotone" />
                   Historique
                 </a>
@@ -190,28 +186,28 @@ const DashboardPage = () => {
             </div>
             
             {/* Planning */}
-            <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+            <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors">
               <Calendar size={18} weight="duotone" />
               <span>Planning</span>
             </a>
             
             {/* Documents avec sous-menu */}
             <div className="space-y-1">
-              <button className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+              <button className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors">
                 <FolderOpen size={18} weight="duotone" />
                 <span className="flex-1 text-left">Documents</span>
                 <CaretDown size={14} className="transform transition-transform" />
               </button>
               <div className="ml-6 space-y-1 border-l-2 border-gray-200 pl-4">
-                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary-600 transition-colors">
                   <FileText size={14} weight="duotone" />
                   Contrats
                 </a>
-                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary-600 transition-colors">
                   <FolderOpen size={14} weight="duotone" />
                   Dossiers RH
                 </a>
-                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary-600 transition-colors">
                   <Download size={14} weight="duotone" />
                   Templates
                 </a>
@@ -222,13 +218,13 @@ const DashboardPage = () => {
             <div className="my-4 border-t border-gray-200"></div>
             
             {/* Paramètres */}
-            <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+            <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors">
               <Gear size={18} weight="duotone" />
               <span>Paramètres</span>
             </a>
             
             {/* Support */}
-            <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+            <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors">
               <ChatCircle size={18} weight="duotone" />
               <span>Support</span>
             </a>
