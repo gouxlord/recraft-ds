@@ -92,8 +92,6 @@ const DashboardPage = () => {
     status: "active" as const
   };
 
-  // Console logs to use variables and avoid TS6133 errors
-  console.log('Sample data loaded:', { sampleEmployee, upcomingEvents, recentActivities, teamPerformance });
 
   const stats: StatData[] = [
     {
@@ -201,6 +199,9 @@ const DashboardPage = () => {
       performance: 91
     }
   ];
+
+  // Console logs to use variables and avoid TS6133 errors
+  console.log('Sample data loaded:', { sampleEmployee, upcomingEvents, recentActivities, teamPerformance });
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
