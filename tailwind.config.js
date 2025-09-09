@@ -8,32 +8,122 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Core colors using CSS variables
         primary: {
-          50: '#F3EFFD',
-          100: '#E7DFFB',
-          200: '#D0BFF6',
-          300: '#B99FF2',
-          400: '#B18AF9',
-          500: '#9B6FE8',
-          600: '#8556D6',
-          700: '#6E3DC4',
-          800: '#5728A3',
-          900: '#411C82',
-          DEFAULT: '#9B6FE8',
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {
-          50: '#FFF3EF',
-          100: '#FFE7DE',
-          200: '#FFCFBD',
-          300: '#FFB79C',
-          400: '#FF9F7B',
-          500: '#FF6D33',
-          600: '#FF4500',
-          700: '#CC3700',
-          800: '#992900',
-          900: '#661B00',
-          DEFAULT: '#FF6D33',
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
         },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
+        },
+        
+        // HR Business Entities
+        'hr-employee': {
+          DEFAULT: 'hsl(var(--hr-employee))',
+          light: 'hsl(var(--hr-employee-light))',
+          border: 'hsl(var(--hr-employee-border))',
+        },
+        'hr-job': {
+          DEFAULT: 'hsl(var(--hr-job))',
+          light: 'hsl(var(--hr-job-light))',
+          border: 'hsl(var(--hr-job-border))',
+        },
+        'hr-position': {
+          DEFAULT: 'hsl(var(--hr-position))',
+          light: 'hsl(var(--hr-position-light))',
+          border: 'hsl(var(--hr-position-border))',
+        },
+        'hr-contract': {
+          DEFAULT: 'hsl(var(--hr-contract))',
+          light: 'hsl(var(--hr-contract-light))',
+          border: 'hsl(var(--hr-contract-border))',
+        },
+        'hr-training': {
+          DEFAULT: 'hsl(var(--hr-training))',
+          light: 'hsl(var(--hr-training-light))',
+          border: 'hsl(var(--hr-training-border))',
+        },
+        'hr-mission': {
+          DEFAULT: 'hsl(var(--hr-mission))',
+          light: 'hsl(var(--hr-mission-light))',
+          border: 'hsl(var(--hr-mission-border))',
+        },
+        'hr-skill': {
+          DEFAULT: 'hsl(var(--hr-skill))',
+          light: 'hsl(var(--hr-skill-light))',
+          border: 'hsl(var(--hr-skill-border))',
+        },
+        'hr-team': {
+          DEFAULT: 'hsl(var(--hr-team))',
+          light: 'hsl(var(--hr-team-light))',
+          border: 'hsl(var(--hr-team-border))',
+        },
+        
+        // Skill Status
+        'skill-critical': {
+          DEFAULT: 'hsl(var(--skill-critical))',
+          light: 'hsl(var(--skill-critical-light))',
+          border: 'hsl(var(--skill-critical-border))',
+        },
+        'skill-improve': {
+          DEFAULT: 'hsl(var(--skill-improve))',
+          light: 'hsl(var(--skill-improve-light))',
+          border: 'hsl(var(--skill-improve-border))',
+        },
+        'skill-acquired': {
+          DEFAULT: 'hsl(var(--skill-acquired))',
+          light: 'hsl(var(--skill-acquired-light))',
+          border: 'hsl(var(--skill-acquired-border))',
+        },
+        'skill-expert': {
+          DEFAULT: 'hsl(var(--skill-expert))',
+          light: 'hsl(var(--skill-expert-light))',
+          border: 'hsl(var(--skill-expert-border))',
+        },
+        
+        // General Status
+        'status-active': {
+          DEFAULT: 'hsl(var(--status-active))',
+          light: 'hsl(var(--status-active-light))',
+        },
+        'status-pending': {
+          DEFAULT: 'hsl(var(--status-pending))',
+          light: 'hsl(var(--status-pending-light))',
+        },
+        'status-inactive': {
+          DEFAULT: 'hsl(var(--status-inactive))',
+          light: 'hsl(var(--status-inactive-light))',
+        },
+        'status-success': {
+          DEFAULT: 'hsl(var(--status-success))',
+          light: 'hsl(var(--status-success-light))',
+        },
+        'status-warning': {
+          DEFAULT: 'hsl(var(--status-warning))',
+          light: 'hsl(var(--status-warning-light))',
+        },
+        
+        // Keep some base colors for backward compatibility
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        
+        // Tailwind default colors for gradients
         gray: {
           50: '#F9FAFB',
           100: '#F3F4F6',
@@ -47,6 +137,7 @@ export default {
           900: '#111827',
           950: '#030712',
         },
+        // Keep these for components that might still use them
         success: {
           50: '#F0FDF4',
           500: '#22C55E',

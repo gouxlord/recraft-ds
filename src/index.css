@@ -6,6 +6,7 @@
 
 @layer base {
   :root {
+    /* Core System Colors */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -26,6 +27,101 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 262 74% 65%;
     --radius: 0.5rem;
+    
+    /* Focus System */
+    --focus-ring-width: 2px;
+    --focus-ring-color: 262 74% 65%; /* primary */
+    --focus-ring-offset: 2px;
+    
+    /* Border Radius System */
+    --radius-sm: 0.375rem;  /* 6px */
+    --radius-md: 0.5rem;    /* 8px */
+    --radius-lg: 0.75rem;   /* 12px */
+    --radius-xl: 1rem;      /* 16px */
+    --radius-2xl: 1.5rem;   /* 24px */
+    --radius-full: 9999px;
+    
+    /* Input System */
+    --input-border: 214.3 31.8% 91.4%; /* border */
+    --input-border-hover: 262 74% 65%; /* primary */
+    --input-border-focus: 262 74% 65%; /* primary */
+    --input-border-error: 0 84.2% 60.2%; /* destructive */
+    --input-bg: 0 0% 100%; /* white */
+    --input-placeholder: 215.4 16.3% 46.9%; /* muted-foreground */
+    
+    /* Shadow System */
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-sm: 0 2px 4px 0 rgb(0 0 0 / 0.06);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    
+    /* HR Business Entities */
+    --hr-employee: 217 91% 60%;        /* Blue-600 */
+    --hr-employee-light: 214 95% 93%;  /* Blue-50 */
+    --hr-employee-border: 214 89% 84%; /* Blue-200 */
+    
+    --hr-job: 221 83% 53%;             /* Blue-600 */
+    --hr-job-light: 214 95% 93%;       /* Blue-50 */
+    --hr-job-border: 214 89% 84%;      /* Blue-200 */
+    
+    --hr-position: 224 76% 48%;        /* Blue-700 */
+    --hr-position-light: 214 95% 93%;  /* Blue-50 */
+    --hr-position-border: 214 89% 84%; /* Blue-200 */
+    
+    --hr-contract: 239 84% 67%;        /* Indigo-600 */
+    --hr-contract-light: 226 100% 97%; /* Indigo-50 */
+    --hr-contract-border: 226 83% 89%; /* Indigo-200 */
+    
+    --hr-training: 239 66% 69%;        /* Indigo-500 */
+    --hr-training-light: 226 100% 97%; /* Indigo-50 */
+    --hr-training-border: 226 83% 89%; /* Indigo-200 */
+    
+    --hr-mission: 243 75% 59%;         /* Indigo-700 */
+    --hr-mission-light: 226 100% 97%;  /* Indigo-50 */
+    --hr-mission-border: 226 83% 89%;  /* Indigo-200 */
+    
+    --hr-skill: 199 89% 48%;           /* Sky-500 */
+    --hr-skill-light: 204 100% 97%;    /* Sky-50 */
+    --hr-skill-border: 200 77% 83%;    /* Sky-200 */
+    
+    --hr-team: 189 94% 43%;            /* Cyan-500 */
+    --hr-team-light: 185 96% 96%;      /* Cyan-50 */
+    --hr-team-border: 186 77% 80%;     /* Cyan-200 */
+    
+    /* Skill Status Levels */
+    --skill-critical: 0 73% 42%;       /* Red-700 */
+    --skill-critical-light: 0 86% 97%; /* Red-50 */
+    --skill-critical-border: 0 84% 80%; /* Red-200 */
+    
+    --skill-improve: 22 87% 40%;       /* Orange-700 */
+    --skill-improve-light: 34 100% 96%; /* Orange-50 */
+    --skill-improve-border: 31 97% 82%; /* Orange-200 */
+    
+    --skill-acquired: 142 68% 28%;     /* Green-700 */
+    --skill-acquired-light: 138 76% 97%; /* Green-50 */
+    --skill-acquired-border: 141 79% 85%; /* Green-200 */
+    
+    --skill-expert: 48 89% 48%;        /* Yellow-500 */
+    --skill-expert-light: 138 76% 97%; /* Green-50 */
+    --skill-expert-border: 141 79% 85%; /* Green-200 */
+    
+    /* General Status */
+    --status-active: 142 71% 45%;      /* Green-500 */
+    --status-active-light: 138 76% 97%; /* Green-50 */
+    
+    --status-pending: 38 92% 50%;      /* Amber-500 */
+    --status-pending-light: 48 100% 96%; /* Amber-50 */
+    
+    --status-inactive: 220 9% 46%;     /* Gray-500 */
+    --status-inactive-light: 210 20% 98%; /* Gray-50 */
+    
+    --status-success: 142 71% 45%;     /* Green-500 */
+    --status-success-light: 138 76% 97%; /* Green-50 */
+    
+    --status-warning: 38 92% 50%;      /* Amber-500 */
+    --status-warning-light: 48 100% 96%; /* Amber-50 */
   }
  
   .dark {
@@ -115,6 +211,163 @@
   
   .text-card-foreground {
     color: hsl(var(--card-foreground));
+  }
+  
+  /* HR Entity Classes */
+  .hr-entity-employee {
+    background-color: hsl(var(--hr-employee-light));
+    color: hsl(var(--hr-employee));
+    border-color: hsl(var(--hr-employee-border));
+  }
+  
+  .hr-entity-job {
+    background-color: hsl(var(--hr-job-light));
+    color: hsl(var(--hr-job));
+    border-color: hsl(var(--hr-job-border));
+  }
+  
+  .hr-entity-position {
+    background-color: hsl(var(--hr-position-light));
+    color: hsl(var(--hr-position));
+    border-color: hsl(var(--hr-position-border));
+  }
+  
+  .hr-entity-contract {
+    background-color: hsl(var(--hr-contract-light));
+    color: hsl(var(--hr-contract));
+    border-color: hsl(var(--hr-contract-border));
+  }
+  
+  .hr-entity-training {
+    background-color: hsl(var(--hr-training-light));
+    color: hsl(var(--hr-training));
+    border-color: hsl(var(--hr-training-border));
+  }
+  
+  .hr-entity-mission {
+    background-color: hsl(var(--hr-mission-light));
+    color: hsl(var(--hr-mission));
+    border-color: hsl(var(--hr-mission-border));
+  }
+  
+  .hr-entity-skill {
+    background-color: hsl(var(--hr-skill-light));
+    color: hsl(var(--hr-skill));
+    border-color: hsl(var(--hr-skill-border));
+  }
+  
+  .hr-entity-team {
+    background-color: hsl(var(--hr-team-light));
+    color: hsl(var(--hr-team));
+    border-color: hsl(var(--hr-team-border));
+  }
+  
+  /* Skill Status Classes */
+  .skill-status-critical {
+    background-color: hsl(var(--skill-critical-light));
+    color: hsl(var(--skill-critical));
+    border-color: hsl(var(--skill-critical-border));
+  }
+  
+  .skill-status-improve {
+    background-color: hsl(var(--skill-improve-light));
+    color: hsl(var(--skill-improve));
+    border-color: hsl(var(--skill-improve-border));
+  }
+  
+  .skill-status-acquired {
+    background-color: hsl(var(--skill-acquired-light));
+    color: hsl(var(--skill-acquired));
+    border-color: hsl(var(--skill-acquired-border));
+  }
+  
+  .skill-status-expert {
+    background-color: hsl(var(--skill-expert-light));
+    color: hsl(var(--skill-expert));
+    border-color: hsl(var(--skill-expert-border));
+  }
+  
+  /* General Status Classes */
+  .status-active {
+    background-color: hsl(var(--status-active-light));
+    color: hsl(var(--status-active));
+  }
+  
+  .status-pending {
+    background-color: hsl(var(--status-pending-light));
+    color: hsl(var(--status-pending));
+  }
+  
+  .status-inactive {
+    background-color: hsl(var(--status-inactive-light));
+    color: hsl(var(--status-inactive));
+  }
+  
+  .status-success {
+    background-color: hsl(var(--status-success-light));
+    color: hsl(var(--status-success));
+  }
+  
+  .status-warning {
+    background-color: hsl(var(--status-warning-light));
+    color: hsl(var(--status-warning));
+  }
+  
+  /* Focus Ring System */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+  }
+  
+  .focus-ring-destructive {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive focus-visible:ring-offset-2;
+  }
+  
+  /* Input System */
+  .input-base {
+    @apply flex w-full rounded-lg border border-border bg-background px-3 py-2 text-sm placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  
+  .input-focus {
+    @apply focus-ring;
+  }
+  
+  .input-error {
+    @apply border-destructive focus-visible:ring-destructive;
+  }
+  
+  /* Card System */
+  .card-base {
+    @apply rounded-xl border border-border bg-card;
+  }
+  
+  .card-elevated {
+    @apply card-base shadow-md hover:shadow-lg transition-shadow;
+  }
+  
+  .card-interactive {
+    @apply card-base hover:border-primary/20 hover:shadow-md transition-all cursor-pointer;
+  }
+  
+  /* Button Base System */
+  .btn-base {
+    @apply inline-flex items-center justify-center rounded-lg font-medium transition-colors focus-ring disabled:pointer-events-none disabled:opacity-50;
+  }
+  
+  .btn-sm {
+    @apply h-9 px-3 text-xs;
+  }
+  
+  .btn-md {
+    @apply h-10 px-4 text-sm;
+  }
+  
+  .btn-lg {
+    @apply h-11 px-8 text-base;
+  }
+  
+  /* Badge Base System */
+  .badge-base {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors;
   }
   
   /* Animations */
