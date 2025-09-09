@@ -2,7 +2,9 @@ import { chromium } from 'playwright';
 
 (async () => {
   const browser = await chromium.launch();
-  const page = await browser.newPage();
+  const page = await browser.newPage({
+    viewport: { width: 1728, height: 1117 }
+  });
   
   // Aller sur le site local
   await page.goto('http://localhost:5175');
@@ -10,13 +12,22 @@ import { chromium } from 'playwright';
   // Attendre que la page soit chargée
   await page.waitForTimeout(2000);
   
-  // Prendre une capture d'écran
+  // Cliquer sur le bouton Profile pour naviguer (avec data-testid)
+  await page.click('[data-testid="profile-button"]');
+  
+  // Attendre que la page Profile soit chargée
+  await page.waitForTimeout(3000);
+  
+  // Vérifier qu'on est sur la bonne page
+  await page.waitForSelector('text=Sophie Durani', { timeout: 5000 });
+  
+  // Prendre une capture d'écran de la page Profile (full page, résolution Mac)
   await page.screenshot({
-    path: 'screenshot.png',
+    path: 'screenshot-profile.png',
     fullPage: true
   });
   
-  console.log('Screenshot saved as screenshot.png');
+  console.log('Screenshot saved as screenshot-profile.png');
   
   await browser.close();
 })();

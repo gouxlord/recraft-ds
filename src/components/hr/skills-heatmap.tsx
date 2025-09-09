@@ -151,14 +151,14 @@ const SkillsHeatmap = ({
 
                 {/* Current Level */}
                 <TableCell className="text-center">
-                  <span className="text-lg font-semibold text-gray-900">
+                  <span className="text-sm font-semibold text-gray-900">
                     {skill.currentLevel.toFixed(1)}
                   </span>
                 </TableCell>
 
                 {/* Target */}
                 <TableCell className="text-center">
-                  <span className="text-lg font-medium text-gray-600">
+                  <span className="text-sm font-medium text-gray-600">
                     {skill.targetLevel}
                   </span>
                 </TableCell>
@@ -171,7 +171,7 @@ const SkillsHeatmap = ({
                   statusConfig.borderColor
                 )}>
                   <div className="flex items-center justify-center gap-2 font-semibold">
-                    <span className="text-lg">{formatStatus(skill.status)}</span>
+                    <span className="text-sm font-semibold">{formatStatus(skill.status)}</span>
                     {statusConfig.icon}
                   </div>
                 </TableCell>
@@ -217,35 +217,6 @@ const SkillsHeatmap = ({
         </div>
       </div>
 
-      {/* Summary Stats */}
-      <div className="mt-6 pt-4 border-t border-gray-200">
-        <div className="grid grid-cols-4 gap-4 text-center">
-          <div>
-            <p className="text-2xl font-bold text-red-600">
-              {defaultSkills.filter(s => s.status <= -1.0).length}
-            </p>
-            <p className="text-xs text-gray-500">Critiques</p>
-          </div>
-          <div>
-            <p className="text-2xl font-bold text-orange-600">
-              {defaultSkills.filter(s => s.status >= -0.9 && s.status <= -0.1).length}
-            </p>
-            <p className="text-xs text-gray-500">À améliorer</p>
-          </div>
-          <div>
-            <p className="text-2xl font-bold text-green-600">
-              {defaultSkills.filter(s => s.status === 0.0).length}
-            </p>
-            <p className="text-xs text-gray-500">Acquis</p>
-          </div>
-          <div>
-            <p className="text-2xl font-bold text-green-600">
-              {defaultSkills.filter(s => s.status > 0.0).length}
-            </p>
-            <p className="text-xs text-gray-500">Expertise</p>
-          </div>
-        </div>
-      </div>
     </>
   );
 

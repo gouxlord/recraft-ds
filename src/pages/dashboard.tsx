@@ -7,6 +7,7 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '.
 import DataTable from '../components/ui/data-table';
 import SkillsHeatmap from '../components/hr/skills-heatmap';
 import { BusinessEntityCard } from '../components/ui/business-entity';
+import CompetenceMiniCard from '../components/ui/competence-mini-card';
 import ActionButton, { ActionButtonWithBadge } from '../components/ui/action-button';
 import CardAction, { CardActionGroup } from '../components/ui/card-action';
 import { 
@@ -210,7 +211,7 @@ const DashboardPage = () => {
         <div className="p-4 h-full">
           <div className="mb-4">
             <div className="flex items-center justify-center px-3 py-2 text-gray-900">
-              <img src="/Vector.svg" alt="Logo" className="h-8 w-auto" />
+              <img src="/logo.svg" alt="Logo" className="h-8 w-auto" />
             </div>
           </div>
           
@@ -626,6 +627,52 @@ const DashboardPage = () => {
                   <BusinessEntityCard entity="training" icon={GraduationCap} />
                   <BusinessEntityCard entity="skill" icon={Medal} />
                   <BusinessEntityCard entity="team" icon={Users} />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Compétences clés - Mini Cards */}
+            <Card className="w-full">
+              <CardHeader>
+                <CardTitle className="text-lg font-semibold text-gray-900">
+                  Compétences clés de l'équipe
+                </CardTitle>
+                <CardDescription className="mt-2 text-gray-600">
+                  Vue d'ensemble des compétences les plus importantes avec scores moyens
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  <CompetenceMiniCard 
+                    name="Communication"
+                    score={4.0}
+                    onViewDetails={() => console.log('Voir détails Communication')}
+                  />
+                  <CompetenceMiniCard 
+                    name="Leadership"
+                    score={3.8}
+                    onViewDetails={() => console.log('Voir détails Leadership')}
+                  />
+                  <CompetenceMiniCard 
+                    name="Gestion projet"
+                    score={3.5}
+                    onViewDetails={() => console.log('Voir détails Gestion projet')}
+                  />
+                  <CompetenceMiniCard 
+                    name="Négociation"
+                    score={3.2}
+                    onViewDetails={() => console.log('Voir détails Négociation')}
+                  />
+                  <CompetenceMiniCard 
+                    name="Analyse données"
+                    score={3.9}
+                    onViewDetails={() => console.log('Voir détails Analyse')}
+                  />
+                  <CompetenceMiniCard 
+                    name="Formation"
+                    score={4.1}
+                    onViewDetails={() => console.log('Voir détails Formation')}
+                  />
                 </div>
               </CardContent>
             </Card>

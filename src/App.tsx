@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import ShowcasePage from './pages/showcase';
 import DashboardPage from './pages/dashboard';
+import EmployeeProfilePage from './pages/employee-profile';
 import { ToastProvider } from './components/ui/toast';
 import { Button } from './components/ui/button';
 
-type PageType = 'showcase' | 'dashboard';
+type PageType = 'showcase' | 'dashboard' | 'employee-profile';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('showcase');
@@ -13,6 +14,8 @@ function App() {
     switch (currentPage) {
       case 'dashboard':
         return <DashboardPage />;
+      case 'employee-profile':
+        return <EmployeeProfilePage />;
       case 'showcase':
       default:
         return <ShowcasePage />;
@@ -22,7 +25,7 @@ function App() {
   return (
     <ToastProvider>
       {/* Navigation simple */}
-      <div className="fixed bottom-4 left-4 z-50 flex gap-2">
+      <div className="fixed bottom-4 right-4 z-50 flex gap-2">
         <Button 
           size="sm" 
           variant={currentPage === 'showcase' ? 'default' : 'outline'}
@@ -36,6 +39,14 @@ function App() {
           onClick={() => setCurrentPage('dashboard')}
         >
           Dashboard
+        </Button>
+        <Button 
+          size="sm" 
+          variant={currentPage === 'employee-profile' ? 'default' : 'outline'}
+          onClick={() => setCurrentPage('employee-profile')}
+          data-testid="profile-button"
+        >
+          Profile
         </Button>
       </div>
       

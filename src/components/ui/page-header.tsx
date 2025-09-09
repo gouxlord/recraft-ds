@@ -44,6 +44,7 @@ export interface PageHeaderProps extends React.HTMLAttributes<HTMLElement> {
 
 const PageHeader = ({
   icon: Icon,
+  avatar,
   title,
   subtitle,
   badges = [],
@@ -81,13 +82,21 @@ const PageHeader = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex items-start justify-between">
           <div className="flex items-start gap-4">
-            {/* Icon */}
-            {Icon && (
+            {/* Icon or Avatar */}
+            {(Icon || avatar) && (
               <div className={cn(
-                "w-16 h-16 rounded-2xl border flex items-center justify-center flex-shrink-0",
-                getIconStyles()
+                "w-16 h-16 rounded-2xl border flex items-center justify-center flex-shrink-0 overflow-hidden",
+                avatar ? "p-0" : getIconStyles()
               )}>
-                <Icon size={32} weight="duotone" />
+                {avatar ? (
+                  <img 
+                    src={avatar} 
+                    alt={title} 
+                    className="w-full h-full object-cover" 
+                  />
+                ) : (
+                  <Icon size={32} weight="duotone" />
+                )}
               </div>
             )}
             
@@ -141,7 +150,7 @@ const PageHeader = ({
                   onClick={action.onClick}
                   className={action.className}
                 >
-                  {action.icon && <action.icon size={16} className="mr-2" />}
+                  {action.icon && <action.icon size={action.label ? 16 : 20} className={action.label ? "mr-2" : ""} />}
                   {action.label}
                 </Button>
               ))}
