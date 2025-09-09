@@ -46,24 +46,24 @@ const CardAction = ({
     switch (priority) {
       case 'urgent':
         return {
-          container: 'bg-gradient-to-r from-red-50 to-pink-50 border-red-200 hover:from-red-100 hover:to-pink-100',
-          icon: 'text-red-600 bg-red-100',
-          badge: 'bg-red-500 text-white',
-          button: 'bg-red-600 hover:bg-red-700 text-white shadow-red-500/20'
+          container: 'bg-gradient-to-r from-destructive/10 to-destructive/5 border-destructive/20 hover:from-destructive/20 hover:to-destructive/10',
+          icon: 'text-destructive bg-destructive/10',
+          badge: 'bg-destructive text-destructive-foreground',
+          button: 'bg-destructive hover:bg-destructive/90 text-destructive-foreground'
         };
       case 'high':
         return {
-          container: 'bg-gradient-to-r from-orange-50 to-yellow-50 border-orange-200 hover:from-orange-100 hover:to-yellow-100',
-          icon: 'text-orange-600 bg-orange-100',
-          badge: 'bg-orange-500 text-white',
-          button: 'bg-orange-600 hover:bg-orange-700 text-white shadow-orange-500/20'
+          container: 'bg-gradient-to-r from-status-warning-light to-status-warning-light/50 border-status-warning/20 hover:from-status-warning-light/80 hover:to-status-warning-light/60',
+          icon: 'text-status-warning bg-status-warning-light',
+          badge: 'bg-status-warning text-white',
+          button: 'bg-status-warning hover:bg-status-warning/90 text-white'
         };
       default:
         return {
-          container: 'bg-gradient-to-r from-primary-50 to-blue-50 border-primary-200 hover:from-primary-100 hover:to-blue-100',
-          icon: 'text-primary-600 bg-primary-100',
-          badge: 'bg-primary-500 text-white',
-          button: 'bg-primary-600 hover:bg-primary-700 text-white shadow-primary-500/20'
+          container: 'bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20 hover:from-primary/20 hover:to-primary/10',
+          icon: 'text-primary bg-primary/10',
+          badge: 'bg-primary text-primary-foreground',
+          button: 'bg-primary hover:bg-primary/90 text-primary-foreground'
         };
     }
   };
@@ -80,7 +80,7 @@ const CardAction = ({
       {...props}
     >
       {/* Background effet de pulse subtil */}
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       
       <div className="relative flex items-start gap-4">
         {/* Icône avec effet moderne */}
@@ -94,7 +94,7 @@ const CardAction = ({
         {/* Contenu principal */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
-            <h4 className="font-semibold text-gray-900 text-sm">{title}</h4>
+            <h4 className="font-semibold text-foreground text-sm">{title}</h4>
             {badge && (
               <Badge 
                 variant={badgeVariant} 
@@ -104,7 +104,7 @@ const CardAction = ({
               </Badge>
             )}
           </div>
-          <p className="text-sm text-gray-600 leading-relaxed">{description}</p>
+          <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
         </div>
 
         {/* Bouton d'action moderne */}
@@ -113,7 +113,7 @@ const CardAction = ({
             size="sm"
             onClick={onAction}
             className={cn(
-              'shadow-lg hover:shadow-xl transform transition-all duration-200 hover:scale-105 active:scale-95',
+              'shadow-lg hover:shadow-xl transform transition-all duration-200 hover:scale-105 active:scale-95 focus-ring',
               styles.button
             )}
           >
@@ -126,7 +126,7 @@ const CardAction = ({
       {priority !== 'normal' && (
         <div className={cn(
           'absolute left-0 top-4 bottom-4 w-1 rounded-r-full',
-          priority === 'urgent' ? 'bg-red-500' : 'bg-orange-500'
+          priority === 'urgent' ? 'bg-destructive' : 'bg-status-warning'
         )} />
       )}
     </div>
@@ -158,13 +158,13 @@ const QuickAction = ({
   const getVariantStyles = () => {
     switch (variant) {
       case 'success':
-        return 'bg-green-50 hover:bg-green-100 text-green-700 border-green-200';
+        return 'bg-status-success-light hover:bg-status-success-light/80 text-status-success border-status-success/20';
       case 'warning':
-        return 'bg-orange-50 hover:bg-orange-100 text-orange-700 border-orange-200';
+        return 'bg-status-warning-light hover:bg-status-warning-light/80 text-status-warning border-status-warning/20';
       case 'error':
-        return 'bg-red-50 hover:bg-red-100 text-red-700 border-red-200';
+        return 'bg-destructive/10 hover:bg-destructive/20 text-destructive border-destructive/20';
       default:
-        return 'bg-primary-50 hover:bg-primary-100 text-primary-700 border-primary-200';
+        return 'bg-primary/10 hover:bg-primary/20 text-primary border-primary/20';
     }
   };
 
@@ -172,7 +172,7 @@ const QuickAction = ({
     <button
       onClick={onClick}
       className={cn(
-        'flex items-center gap-3 p-3 rounded-lg border transition-all duration-200 hover:shadow-md group w-full text-left',
+        'flex items-center gap-3 p-3 rounded-lg border transition-all duration-200 hover:shadow-md group w-full text-left focus-ring',
         getVariantStyles(),
         className
       )}
@@ -186,7 +186,7 @@ const QuickAction = ({
       </div>
       {count && (
         <div className="flex-shrink-0">
-          <span className="text-xs font-bold bg-white/60 px-2 py-1 rounded-full">
+          <span className="text-xs font-bold bg-background/60 px-2 py-1 rounded-full">
             {count}
           </span>
         </div>

@@ -78,18 +78,18 @@ const ActionCard = ({
 
   const getCategoryColor = () => {
     const colors: Record<string, string> = {
-      'Technique': 'bg-blue-50 text-blue-700',
-      'Management': 'bg-purple-50 text-purple-700',
-      'Communication': 'bg-green-50 text-green-700',
-      'Métier': 'bg-orange-50 text-orange-700'
+      'Technique': 'bg-hr-skill-light text-hr-skill',
+      'Management': 'bg-hr-employee-light text-hr-employee',
+      'Communication': 'bg-status-success-light text-status-success',
+      'Métier': 'bg-hr-training-light text-hr-training'
     };
-    return colors[category || ''] || 'bg-gray-50 text-gray-700';
+    return colors[category || ''] || 'bg-muted text-muted-foreground';
   };
 
   return (
     <div
       className={cn(
-        'bg-white rounded-xl border border-gray-200 shadow-soft hover-lift transition-all duration-300 group',
+        'bg-background rounded-xl border border-border shadow-sm hover-lift transition-all duration-300 group',
         className
       )}
       {...props}
@@ -98,11 +98,11 @@ const ActionCard = ({
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-gray-50 rounded-lg group-hover:scale-110 transition-transform">
+            <div className="p-2 bg-muted rounded-lg group-hover:scale-110 transition-transform">
               {getTypeIcon()}
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900 line-clamp-1">{title}</h3>
+              <h3 className="font-semibold text-foreground line-clamp-1">{title}</h3>
               {category && (
                 <Badge variant="outline" className={cn('mt-1', getCategoryColor())}>
                   {category}
@@ -115,7 +115,7 @@ const ActionCard = ({
 
         {/* Description */}
         {description && (
-          <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+          <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
             {description}
           </p>
         )}
@@ -124,8 +124,8 @@ const ActionCard = ({
         {typeof progress === 'number' && (
           <div className="mb-4">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-gray-600">Progression</span>
-              <span className="text-sm font-medium text-gray-900">{progress}%</span>
+              <span className="text-sm text-muted-foreground">Progression</span>
+              <span className="text-sm font-medium text-foreground">{progress}%</span>
             </div>
             <Progress value={progress} variant="default" />
           </div>
@@ -134,28 +134,28 @@ const ActionCard = ({
         {/* Metadata */}
         <div className="space-y-2 mb-4">
           {duration && (
-            <div className="flex items-center gap-2 text-sm text-gray-500">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Clock size={14} />
               <span>{duration}</span>
             </div>
           )}
           
           {participants && (
-            <div className="flex items-center gap-2 text-sm text-gray-500">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Users size={14} />
               <span>{participants} participant{participants > 1 ? 's' : ''}</span>
             </div>
           )}
           
           {rating && (
-            <div className="flex items-center gap-2 text-sm text-gray-500">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Star size={14} weight="fill" className="text-warning-500" />
               <span>{rating}/5</span>
             </div>
           )}
           
           {dueDate && (
-            <div className="flex items-center gap-2 text-sm text-gray-500">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Calendar size={14} />
               <span>Échéance: {dueDate}</span>
             </div>
