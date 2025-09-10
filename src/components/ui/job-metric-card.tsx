@@ -65,7 +65,11 @@ const JobMetricCard: React.FC<JobMetricCardProps> = ({
             'w-12 h-12 mx-auto mb-3 rounded-full border flex items-center justify-center',
             styles.iconBg
           )}>
-            <Icon size={20} weight="duotone" className={styles.iconColor} />
+            <Icon 
+              size={20} 
+              weight="duotone" 
+              className={title === 'Niveau mentor' ? 'text-status-warning' : styles.iconColor} 
+            />
           </div>
         )}
         
