@@ -7,7 +7,7 @@ import JobDescriptionCard from '../components/ui/job-description-card';
 import SkillsHeatmap from '../components/hr/skills-heatmap';
 import EvolutionWishCard from '../components/ui/evolution-wish-card';
 import HelpLink from '../components/ui/help-link';
-import { ArrowRight, Eye, Crown, Warning, CircleNotch, Info, List } from '@phosphor-icons/react';
+import { ArrowRight, Eye, Crown, Warning, CircleNotch, Info, List, ChartLine } from '@phosphor-icons/react';
 import { 
   House,
   ChartBar,
@@ -254,8 +254,8 @@ const EmployeeProfilePage = () => {
                 </CardDescription>
               </div>
               <Button variant="default" size="sm" className="flex-shrink-0 gap-2">
+                <ChartLine size={14} weight="duotone" />
                 M'autoévaluer
-                <ArrowRight size={14} weight="bold" />
               </Button>
             </CardHeader>
             <CardContent>

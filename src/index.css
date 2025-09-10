@@ -133,7 +133,7 @@
     --status-success: 120 100% 30%;    /* Vert plus vif */
     --status-success-light: 138 76% 97%; /* Green-50 */
     
-    --status-warning: 35 100% 50%;     /* Orange plus vif */
+    --status-warning: 45 100% 50%;     /* Jaune plus vif */
     --status-warning-light: 48 100% 96%; /* Amber-50 */
   }
  
@@ -350,7 +350,7 @@
   
   /* Card System */
   .card-base {
-    @apply rounded-3xl border border-border bg-card;
+    @apply rounded-2xl border border-border bg-card;
   }
   
   .card-elevated {
@@ -363,7 +363,7 @@
   
   /* Button Base System */
   .btn-base {
-    @apply inline-flex items-center justify-center rounded-2xl font-medium transition-colors focus-ring disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex items-center justify-center rounded-lg font-medium transition-colors focus-ring disabled:pointer-events-none disabled:opacity-50;
   }
   
   .btn-sm {
