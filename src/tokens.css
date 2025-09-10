@@ -1,0 +1,114 @@
+/* Design System Tokens Only - For Monorepo Packages */
+/* Use this in other packages that don't need full Tailwind setup */
+
+:root {
+  /* Core System Colors */
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 262 74% 65%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 17 100% 60%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 210 40% 98%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 98%;
+  --accent-foreground: 222.2 84% 4.9%;
+  --destructive: 0 100% 50%;            /* Rouge plus vif */
+  --destructive-foreground: 210 20% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 262.1 83.3% 57.8%;
+
+  /* HR Business Entities */
+  --hr-employee: 217 91% 60%;        /* Blue-600 */
+  --hr-employee-light: 214 95% 93%;  /* Blue-50 */
+  --hr-employee-border: 214 89% 84%; /* Blue-200 */
+  
+  --hr-job: 221 83% 53%;             /* Blue-600 */
+  --hr-job-light: 214 95% 93%;       /* Blue-50 */
+  --hr-job-border: 214 89% 84%;      /* Blue-200 */
+  
+  --hr-contract: 239 84% 67%;        /* Indigo-600 */
+  --hr-contract-light: 226 100% 97%; /* Indigo-50 */
+  --hr-contract-border: 226 83% 89%; /* Indigo-200 */
+  
+  --hr-training: 239 66% 69%;        /* Indigo-500 */
+  --hr-training-light: 226 100% 97%; /* Indigo-50 */
+  --hr-training-border: 226 83% 89%; /* Indigo-200 */
+  
+  --hr-skill: 210 100% 45%;          /* Bleu plus vif */
+  --hr-skill-light: 204 100% 97%;    /* Sky-50 */
+  --hr-skill-border: 204 94% 94%;    /* Sky-100 */
+  
+  --hr-team: 188 95% 68%;            /* Cyan-500 */
+  --hr-team-light: 185 96% 97%;      /* Cyan-50 */
+  --hr-team-border: 185 84% 93%;     /* Cyan-100 */
+
+  /* Status Colors */
+  --status-success: 120 100% 30%;    /* Vert plus vif */
+  --status-success-light: 138 76% 97%; /* Green-50 */
+  
+  --status-warning: 45 100% 50%;     /* Jaune plus vif */
+  --status-warning-light: 48 100% 96%; /* Amber-50 */
+  
+  /* Skill Assessment Colors */
+  --skill-critical: 0 84% 60%;       /* Red-500 */
+  --skill-critical-light: 0 86% 97%; /* Red-50 */
+  --skill-critical-border: 0 79% 86%; /* Red-200 */
+  
+  --skill-improve: 22 93% 58%;       /* Orange-500 */
+  --skill-improve-light: 34 100% 97%; /* Orange-50 */
+  --skill-improve-border: 20 91% 85%; /* Orange-200 */
+  
+  --skill-acquired: 142 71% 45%;     /* Green-600 */
+  --skill-acquired-light: 138 76% 97%; /* Green-50 */
+  --skill-acquired-border: 141 79% 85%; /* Green-200 */
+  
+  --skill-expert: 120 90% 75%;       /* Green plus vif */
+  --skill-expert-light: 138 76% 97%; /* Green-50 */
+  --skill-expert-border: 120 90% 75%; /* Green plus vif */
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 2px 4px 0 rgb(0 0 0 / 0.06);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;   /* 4px */
+  --radius-md: 0.5rem;    /* 8px */
+  --radius-lg: 0.75rem;   /* 12px */
+  --radius-xl: 1rem;      /* 16px */
+  --radius-2xl: 1.5rem;   /* 24px */
+  --radius-3xl: 2rem;     /* 32px */
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 0 0% 100%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 100%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 262 74% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 17 100% 60%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 262.1 83.3% 57.8%;
+  }
+}

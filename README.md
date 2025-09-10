@@ -1,12 +1,102 @@
-# React + Vite
+# @recraft/design-system
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Design system React professionnel pour applications RH/Employés, avec tokens sémantiques et composants TypeScript.
 
-Currently, two official plugins are available:
+## 🚀 Installation (Monorepo Yarn)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+# Dans votre workspace
+yarn add @recraft/design-system
+```
 
-## Expanding the ESLint configuration
+## 📦 Usage
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```typescript
+// Import components
+import { 
+  Button, 
+  Card, 
+  CompetenceMiniCard, 
+  JobMetricCard 
+} from '@recraft/design-system';
+
+// Import styles (required)
+import '@recraft/design-system/styles';
+
+// Or just tokens for custom styling
+import '@recraft/design-system/tokens';
+```
+
+## 🎨 Composants disponibles
+
+### Core UI
+- **Button** - 6 variants, 4 sizes
+- **Card** - Avec header/content/footer
+- **Badge** - 7 variants sémantiques
+- **Input, Select, Checkbox, Radio, Switch**
+- **Progress, Skeleton, Spinner**
+
+### Navigation  
+- **PageHeader** - Headers avec avatar/icônes
+- **Breadcrumb** - Navigation fil d'Ariane
+- **SidebarMenu, NavigationBar**
+
+### HR Spécifiques
+- **CompetenceMiniCard** - Mini-cards compétences
+- **JobMetricCard** - Métriques métier
+- **EvolutionWishCard** - Souhaits d'évolution  
+- **BusinessEntityBadge** - Entités métier RH
+
+### Data & Feedback
+- **DataTable** - Tableaux avec tri/filtre
+- **Modal, Toast** - Notifications
+- **EmptyState** - États vides
+
+## 🎯 Tokens sémantiques
+
+```css
+/* Entités RH */
+--hr-employee: 217 91% 60%;
+--hr-skill: 210 100% 45%;
+--hr-training: 239 66% 69%;
+
+/* Status */
+--status-success: 120 100% 30%;
+--status-warning: 45 100% 50%;
+--destructive: 0 100% 50%;
+```
+
+## 📚 Documentation
+
+- **Storybook** : http://localhost:6006
+- **TypeScript** : Types complets inclus
+- **WCAG AA** : Accessibilité garantie
+
+## 🏗️ Monorepo Setup
+
+```json
+// Dans apps/mon-app/package.json
+{
+  "dependencies": {
+    "@recraft/design-system": "workspace:*"
+  }
+}
+```
+
+```typescript
+// apps/mon-app/src/App.tsx
+import { Button, Card } from '@recraft/design-system';
+import '@recraft/design-system/styles';
+
+export default function App() {
+  return (
+    <Card>
+      <Button>Hello World</Button>
+    </Card>
+  );
+}
+```
+
+---
+
+**Design System v1.0** - Prêt pour production ! 🎉
