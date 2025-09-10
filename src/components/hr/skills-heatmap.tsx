@@ -141,7 +141,7 @@ const SkillsHeatmap = ({
                     {skill.isKey && (
                       <Badge 
                         variant="outline" 
-                        className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded"
+                        className="text-xs bg-primary/10 text-primary border-primary/30 px-2 py-1 rounded"
                       >
                         Clé
                       </Badge>
@@ -209,7 +209,7 @@ const SkillsHeatmap = ({
             <span className="text-gray-600">Expertise (&gt; 0.0)</span>
           </div>
           <div className="flex items-center gap-2">
-            <Badge variant="outline" className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">
+            <Badge variant="outline" className="text-xs bg-primary/10 text-primary border-primary/30 px-2 py-1 rounded">
               Clé
             </Badge>
             <span className="text-gray-600">Compétence clé du métier</span>

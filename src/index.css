@@ -433,6 +433,11 @@
     box-shadow: 0 10px 40px 0 rgb(0 0 0 / 0.15);
   }
   
+  /* Menu Icons always primary violet color */
+  .menu-icon {
+    color: hsl(var(--primary));
+  }
+  
   .glass-effect {
     backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.8);

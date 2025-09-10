@@ -6,6 +6,7 @@ import JobMetricCard from '../components/ui/job-metric-card';
 import JobDescriptionCard from '../components/ui/job-description-card';
 import SkillsHeatmap from '../components/hr/skills-heatmap';
 import EvolutionWishCard from '../components/ui/evolution-wish-card';
+import HelpLink from '../components/ui/help-link';
 import { ArrowRight, Eye, Crown, Warning, CircleNotch, Info, List } from '@phosphor-icons/react';
 import { 
   House,
@@ -42,28 +43,28 @@ const EmployeeProfilePage = () => {
             <nav className="space-y-1">
             {/* Tableau de bord */}
             <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors">
-              <House size={18} weight="duotone" />
+              <House size={18} weight="duotone" className="menu-icon" />
               <span>Tableau de bord</span>
             </a>
             
             {/* Progresser avec sous-menu - ACTIF */}
             <div className="space-y-1">
               <button className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-primary bg-primary/10 rounded-lg transition-colors">
-                <TrendUp size={18} weight="duotone" />
+                <TrendUp size={18} weight="duotone" className="menu-icon" />
                 <span className="flex-1 text-left">Progresser</span>
                 <CaretDown size={14} className="transform transition-transform rotate-180" />
               </button>
               <div className="ml-6 space-y-1 border-l-2 border-primary/30 pl-4">
                 <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-primary bg-primary/5 rounded transition-colors">
-                  <Users size={14} weight="duotone" />
+                  <Users size={14} weight="duotone" className="menu-icon" />
                   Mon profil
                 </a>
                 <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary transition-colors">
-                  <Target size={14} weight="duotone" />
+                  <Target size={14} weight="duotone" className="menu-icon" />
                   Compétences
                 </a>
                 <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary transition-colors">
-                  <FileText size={14} weight="duotone" />
+                  <FileText size={14} weight="duotone" className="menu-icon" />
                   Carrière
                 </a>
               </div>
@@ -72,21 +73,21 @@ const EmployeeProfilePage = () => {
             {/* Manager avec sous-menu */}
             <div className="space-y-1">
               <button className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors">
-                <UsersThree size={18} weight="duotone" />
+                <UsersThree size={18} weight="duotone" className="menu-icon" />
                 <span className="flex-1 text-left">Manager</span>
                 <CaretDown size={14} className="transform transition-transform" />
               </button>
               <div className="ml-6 space-y-1 border-l-2 border-gray-200 pl-4">
                 <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary transition-colors">
-                  <Users size={14} weight="duotone" />
+                  <Users size={14} weight="duotone" className="menu-icon" />
                   Équipes
                 </a>
                 <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary transition-colors">
-                  <UserCircle size={14} weight="duotone" />
+                  <UserCircle size={14} weight="duotone" className="menu-icon" />
                   Entretiens
                 </a>
                 <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary transition-colors">
-                  <Calendar size={14} weight="duotone" />
+                  <Calendar size={14} weight="duotone" className="menu-icon" />
                   Missions
                 </a>
               </div>
@@ -95,7 +96,7 @@ const EmployeeProfilePage = () => {
             {/* Piloter avec sous-sections structurées */}
             <div className="space-y-1">
               <button className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors">
-                <ChartBar size={18} weight="duotone" />
+                <ChartBar size={18} weight="duotone" className="menu-icon" />
                 <span className="flex-1 text-left">Piloter</span>
                 <CaretDown size={14} className="transform transition-transform" />
               </button>
@@ -105,11 +106,11 @@ const EmployeeProfilePage = () => {
                   <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide px-3 py-1">Analytics</h4>
                   <div className="space-y-1">
                     <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary transition-colors">
-                      <ChartBar size={14} weight="duotone" />
+                      <ChartBar size={14} weight="duotone" className="menu-icon" />
                       Tableaux de bord
                     </a>
                     <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary transition-colors">
-                      <FileText size={14} weight="duotone" />
+                      <FileText size={14} weight="duotone" className="menu-icon" />
                       Rapports
                     </a>
                   </div>
@@ -120,15 +121,15 @@ const EmployeeProfilePage = () => {
                   <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide px-3 py-1">Performance</h4>
                   <div className="space-y-1">
                     <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary transition-colors">
-                      <Target size={14} weight="duotone" />
+                      <Target size={14} weight="duotone" className="menu-icon" />
                       Objectifs
                     </a>
                     <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary transition-colors">
-                      <UserCircle size={14} weight="duotone" />
+                      <UserCircle size={14} weight="duotone" className="menu-icon" />
                       Entretiens
                     </a>
                     <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary transition-colors">
-                      <Calendar size={14} weight="duotone" />
+                      <Calendar size={14} weight="duotone" className="menu-icon" />
                       Évaluations
                     </a>
                   </div>
@@ -139,11 +140,11 @@ const EmployeeProfilePage = () => {
                   <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide px-3 py-1">Équipes</h4>
                   <div className="space-y-1">
                     <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary transition-colors">
-                      <Users size={14} weight="duotone" />
+                      <Users size={14} weight="duotone" className="menu-icon" />
                       Gestion d'équipe
                     </a>
                     <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary transition-colors">
-                      <Buildings size={14} weight="duotone" />
+                      <Buildings size={14} weight="duotone" className="menu-icon" />
                       Organigramme
                     </a>
                   </div>
@@ -154,11 +155,11 @@ const EmployeeProfilePage = () => {
                   <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide px-3 py-1">Compétences</h4>
                   <div className="space-y-1">
                     <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary transition-colors">
-                      <GraduationCap size={14} weight="duotone" />
+                      <GraduationCap size={14} weight="duotone" className="menu-icon" />
                       Formations
                     </a>
                     <a href="#" className="flex items-center gap-3 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-primary transition-colors">
-                      <Target size={14} weight="duotone" />
+                      <Target size={14} weight="duotone" className="menu-icon" />
                       Évaluations
                     </a>
                   </div>
@@ -171,7 +172,7 @@ const EmployeeProfilePage = () => {
             
             {/* Paramétrer */}
             <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors">
-              <Gear size={18} weight="duotone" />
+              <Gear size={18} weight="duotone" className="menu-icon" />
               <span>Paramétrer</span>
             </a>
             </nav>
@@ -303,10 +304,9 @@ const EmployeeProfilePage = () => {
               
               {/* Lien d'aide en bas à gauche */}
               <div className="flex justify-start mt-6">
-                <button className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  <Info size={14} weight="duotone" />
-                  <span className="underline">Comment sont détectées et notées mes compétences?</span>
-                </button>
+                <HelpLink variant="primary">
+                  Comment sont détectées et notées mes compétences?
+                </HelpLink>
               </div>
             </CardContent>
           </Card>
@@ -338,22 +338,22 @@ const EmployeeProfilePage = () => {
                   variant="employee"
                 />
                 
-                {/* Card 2: Niveau mentor */}
+                {/* Card 2: Niveau mentor (niveau le plus élevé) */}
                 <JobMetricCard
                   title="Niveau mentor"
                   value="1/8"
                   subtitle="Expertises"
                   icon={Crown}
-                  variant="warning"
+                  variant="success"
                 />
                 
-                {/* Card 3: Compétences manquantes */}
+                {/* Card 3: Compétences au niveau */}
                 <JobMetricCard
-                  title="compétences manquantes"
+                  title="compétences au niveau"
                   value="1/8"
-                  subtitle="À acquérir"
-                  icon={Warning}
-                  variant="error"
+                  subtitle="Maîtrisées"
+                  icon={Target}
+                  variant="success"
                 />
                 
                 {/* Card 4: Compétences à développer */}
@@ -365,13 +365,13 @@ const EmployeeProfilePage = () => {
                   variant="warning"
                 />
                 
-                {/* Card 5: Compétences au niveau */}
+                {/* Card 5: Compétences manquantes (niveau le plus bas) */}
                 <JobMetricCard
-                  title="compétences au niveau"
+                  title="compétences manquantes"
                   value="1/8"
-                  subtitle="Maîtrisées"
-                  icon={Target}
-                  variant="success"
+                  subtitle="À acquérir"
+                  icon={Warning}
+                  variant="error"
                 />
                 
               </div>
@@ -432,10 +432,9 @@ const EmployeeProfilePage = () => {
               
               {/* Lien d'aide en bas */}
               <div className="flex justify-between items-center mt-6">
-                <button className="flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors">
-                  <Info size={14} weight="duotone" />
-                  <span className="underline">Comment sont calculés les scores ?</span>
-                </button>
+                <HelpLink variant="primary" className="text-xs">
+                  Comment sont calculés les scores ?
+                </HelpLink>
                 
                 <Button variant="outline" size="sm" className="gap-2">
                   <Eye size={14} weight="duotone" />

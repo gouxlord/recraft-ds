@@ -30,7 +30,7 @@ const CompetenceMiniCard: React.FC<CompetenceMiniCardProps> = ({
     <div
       className={cn(
         'relative bg-background border border-border rounded-lg p-3 hover:shadow-md transition-all duration-200 cursor-pointer',
-        'border-l-4',
+        'border-l-8',
         className
       )}
       style={getLevelBorderStyle()}
