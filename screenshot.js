@@ -21,6 +21,11 @@ import { chromium } from 'playwright';
   // Vérifier qu'on est sur la bonne page
   await page.waitForSelector('text=Sophie Durani', { timeout: 5000 });
   
+  // Cacher les boutons de navigation avant le screenshot
+  await page.addStyleTag({
+    content: '#navigation-buttons { display: none !important; }'
+  });
+  
   // Prendre une capture d'écran de la page Profile (full page, résolution Mac)
   await page.screenshot({
     path: 'screenshot-profile.png',

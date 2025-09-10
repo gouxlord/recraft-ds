@@ -25,7 +25,7 @@ function App() {
   return (
     <ToastProvider>
       {/* Navigation simple */}
-      <div className="fixed bottom-4 right-4 z-50 flex gap-2">
+      <div className="fixed bottom-4 right-4 z-50 flex gap-2" id="navigation-buttons">
         <Button 
           size="sm" 
           variant={currentPage === 'showcase' ? 'default' : 'outline'}
