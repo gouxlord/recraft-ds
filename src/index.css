@@ -337,7 +337,7 @@
   
   /* Input System */
   .input-base {
-    @apply flex w-full rounded-lg border border-border bg-background px-3 py-2 text-sm placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50;
+    @apply flex w-full rounded-2xl border border-border bg-background px-3 py-2 text-sm placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50;
   }
   
   .input-focus {
@@ -350,7 +350,7 @@
   
   /* Card System */
   .card-base {
-    @apply rounded-xl border border-border bg-card;
+    @apply rounded-3xl border border-border bg-card;
   }
   
   .card-elevated {
@@ -363,7 +363,7 @@
   
   /* Button Base System */
   .btn-base {
-    @apply inline-flex items-center justify-center rounded-lg font-medium transition-colors focus-ring disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex items-center justify-center rounded-2xl font-medium transition-colors focus-ring disabled:pointer-events-none disabled:opacity-50;
   }
   
   .btn-sm {
